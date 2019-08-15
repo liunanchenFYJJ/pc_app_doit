@@ -26,6 +26,15 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'comma-dangle': ["error", "always"],
-    'semi': ["error", "always"]
+    'semi': ["error", "always"],
+    'vue/no-parsing-error': [ 2, {
+        'x-invalid-end-tag': false,
+      }],
+    'space-before-function-paren': [ 2, {
+      "anonymous": "never",
+      "named": "never",
+      "asyncArrow": "always"
+    }],
+    "comma-dangle": [0, "never"],
   }
 }
