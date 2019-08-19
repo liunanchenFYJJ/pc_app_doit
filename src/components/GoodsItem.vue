@@ -1,7 +1,7 @@
 <template>
-    <div class="card" @click="toGoodItem">
+    <div class="card" @click="toGoodItem" :style="{height: o_height}">
         <div>
-            <img :src="imgSrc" alt="">
+            <img :style="{height: i_height}" :src="imgSrc" alt="">
         </div>
         <div>
             <slot name="title"></slot>
@@ -28,7 +28,15 @@ export default {
     baseRate: {
       type: Number,
       default: 6,
-    }
+    },
+    o_height: {
+      type: String,
+      default: '280px',
+    },
+    i_height: {
+      type: String,
+      default: '200px',
+    },
   },
   methods: {
     toGoodItem() {
@@ -40,19 +48,19 @@ export default {
 <style lang="scss">
   .card {
     background: #fff;
-    height: 280px;
+    // height: 280px;
     // margin: 1em 0 0 0;
     div {
-        width: 100%;
-        height: 200px;
-        &:nth-child(n+2) {
-            height: 1.5em;
-        }
-        img {
-            width: 100%;
-            height: inherit;
-            padding-bottom: 1em;
-        }
+      width: 100%;
+      // height: 200px;
+      &:nth-child(n+2) {
+          height: 1.5em;
+      }
+      img {
+          width: 100%;
+          // height: 200px;
+          padding-bottom: 1em;
+      }
     }
   }
 </style>
