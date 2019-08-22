@@ -19,6 +19,7 @@
     </div>
 </template>
 <script>
+import { oneOf } from '@/utils/index';
 export default {
   name: 'GoodsItem',
   props: {
@@ -31,12 +32,19 @@ export default {
     },
     o_height: {
       type: String,
-      default: '280px',
+      default: '290px',
     },
     i_height: {
       type: String,
       default: '200px',
     },
+    mode: {
+      type: String,
+      validator(value) {
+        return oneOf(value, ['horizontal', 'vertical']);
+      },
+      default: 'vertical',
+    }
   },
   methods: {
     toGoodItem() {
@@ -49,7 +57,12 @@ export default {
   .card {
     background: #fff;
     // height: 280px;
-    // margin: 1em 0 0 0;
+    padding: 0.8em;
+    border-radius: 6px;
+    cursor: pointer;
+    &:hover {
+      background: #f7f7f7;
+    }
     div {
       width: 100%;
       // height: 200px;

@@ -6,7 +6,7 @@ import store from './store';
 import Layout from './Layout';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
-import hasPermission from '@/utils/hasPermission';
+import { hasPermission } from '@/utils/index';
 
 Vue.use(router);
 Vue.use(store);

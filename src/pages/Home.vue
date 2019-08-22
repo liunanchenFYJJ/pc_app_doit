@@ -1,13 +1,11 @@
 <template>
   <div id="home">
-    <div class="showImg">
-      <img src="../assets/swim.jpg" alt="">
-    </div>
+    <div class="showImg"></div>
     <div class="container">
       <div class="inner">
         <h2>附近场馆</h2>
-        <Row :gutter="16">
-          <Col :ms="12" :md="12" :lg="8" v-for="(item, i) in MockData.goodLists" :key="i">
+        <Row>
+          <Col :sm="12" :md="12" :lg="8" v-for="(item, i) in MockData.goodLists" :key="i">
             <goods-item :imgSrc="item.img" :baseRate="10">
               <span slot="title">{{item.title}}</span>
               <span slot="rate">{{item.rate}}条评价</span>
@@ -21,11 +19,11 @@
     <div class="container">
       <div class="inner">
         <h2>超值课程</h2>
-        <Row :gutter="16">
-          <Col :ms="16" :md="16" :lg="18">
+        <Row>
+          <Col :sm="16" :md="16" :lg="18">
             <div></div>
           </Col>
-          <Col :ms="8" :md="8" :lg="6">
+          <Col :sm="8" :md="8" :lg="6">
             <div></div>
             <div></div>
           </Col>
@@ -35,9 +33,9 @@
     <div class="container">
       <div class="inner">
         <h2>热门赛事</h2>
-        <Row :gutter="16">
-          <Col :ms="12" :md="12" :lg="6" v-for="(item, i) in MockData.hotGameLists" :key="i">
-            <goods-item :imgSrc="item.img" :baseRate="10" o_height="400px" i_height="320px">
+        <Row>
+          <Col :sm="12" :md="12" :lg="6" v-for="(item, i) in MockData.hotGameLists" :key="i">
+            <goods-item :imgSrc="item.img" :baseRate="10" o_height="410px" i_height="320px">
               <span slot="title">{{item.title}}</span>
               <span slot="rate">{{item.rate}}条评价</span>
               <span slot="address">{{item.address}}</span>
@@ -50,13 +48,13 @@
     <div class="container">
       <div class="inner">
         <h2>特惠热卖</h2>
-        <Row :gutter="16">
-          <Col :ms="12" :md="12" :lg="6">
-            <div style="height: 560px; background: #000;">
+        <Row>
+          <Col :sm="12" :md="12" :lg="6">
+            <div class="sale">
 
             </div>
           </Col>
-          <Col :ms="12" :md="12" :lg="6" v-for="(item, i) in MockData.hotSaleLists" :key="i">
+          <Col :sm="12" :md="12" :lg="6" v-for="(item, i) in MockData.hotSaleLists" :key="i">
             <goods-item :imgSrc="item.img" :baseRate="10">
               <span slot="title">{{item.title}}</span>
               <span slot="rate">{{item.rate}}条评价</span>
@@ -120,27 +118,33 @@ export default {
 </script>
 <style lang="scss" scoped>
 $g_width: 60%;
+$o_default_height: 290px; // GoodItem o_height 原始值
+$g_background: #f7f7f7;
 #home {
   height: 100%;
   .showImg {
-    height: 20em;
-    overflow:hidden;
-    position: relative;
-    img {
-      width: inherit;
-      position: absolute;
-      clip: rect(0, 1000px);
-    }
+    width: 100%;
+    height: 26em;
+    background: url('../assets/swim.jpg') no-repeat;
+    background-size: 100%;
   }
   .container {
     padding-bottom: 6em;
-    background: #f7f7f7;
+    background: $g_background;
     .inner {
       height: 100%;
       width: $g_width;
       margin: auto;
       padding: 1em;
       background: #fff;
+      border-radius: 4px;
+      h2 {
+        padding-left: 0.5em;
+      }
+      div.sale {
+        height: $o_default_height * 2;
+        background: #000;
+      }
     }
     &:nth-child(2) {
       padding-top: 6em;
@@ -168,7 +172,7 @@ $g_width: 60%;
           }
         }
       }
-    }
+    };
   }
 }
 </style>

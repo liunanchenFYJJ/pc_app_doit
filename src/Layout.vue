@@ -1,7 +1,7 @@
 <template>
   <div id="layout">
     <div class="header"></div>
-    <div class="nav_container">
+    <div class="nav_container" :class="{ 'nav_fixed': is_nav_fixed }">
       <div class="nav">
           <router-link tag="div" to="home">首页</router-link>
           <router-link tag="div" to="ticket">票务</router-link>
@@ -51,6 +51,7 @@ export default {
   data() {
     return {
       isBtnShow: false,
+      is_nav_fixed: false,
     };
   },
   mounted() {
@@ -67,6 +68,11 @@ export default {
       } else {
         this.isBtnShow = false;
       }
+      if (window.pageYOffset >= 100) {
+        this.is_nav_fixed = true;
+      } else {
+        this.is_nav_fixed = false;
+      }
     },
     handleBackTop() {
       window.scroll({
@@ -80,23 +86,26 @@ export default {
 <style lang="scss" scoped>
 $g_width: 60%;
 $g_border_radius: 20px;
+$g_background: #f7f7f7;
 #layout {
+  min-width: 960px;
   height: 100%;
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   .header {
     width: 100%;
     height: 6em;
     background: grey;
-    z-index: 100;
-    position: fixed;
-    top: 0;
+    // z-index: 100;
+    // position: fixed;
+    // top: 0;
   }
   .nav_container {
-    background: #f7f7f7;
+    background: $g_background;
+    transition: all .3s ease;
     .nav {
       height: 6em;
       margin: auto;
-      margin-top: 6em;
+      // margin-top: 6em;
       width: $g_width;
       div {
         display: inline-block;
@@ -138,6 +147,15 @@ $g_border_radius: 20px;
         }
       }
     }
+  }
+  .nav_fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    background: $g_background;
+    box-shadow: 0 5px 14px #ccc;
   }
   .footer {
     width: $g_width;
