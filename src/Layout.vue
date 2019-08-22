@@ -1,9 +1,16 @@
 <template>
   <div id="layout">
     <div class="header"></div>
-    <div class="nav" :class="{ nav_extra: isNavFixed }"></div>
-    <div class="showImg">
-      <img src="./assets/swim.jpg" alt="">
+    <div class="nav_container">
+      <div class="nav">
+          <router-link tag="div" to="home">首页</router-link>
+          <router-link tag="div" to="ticket">票务</router-link>
+          <router-link tag="div" to="train">培训</router-link>
+          <router-link tag="div" to="games">赛事</router-link>
+          <router-link tag="div" to="mall">商城</router-link>
+          <router-link tag="div" to="community">社区</router-link>
+          <input type="text" /><Icon size="24" type="ios-search-outline" />
+      </div>
     </div>
     <router-view />
     <div class="footer">
@@ -44,7 +51,6 @@ export default {
   data() {
     return {
       isBtnShow: false,
-      isNavFixed: true,
     };
   },
   mounted() {
@@ -55,18 +61,11 @@ export default {
   },
   methods: {
     showBtn() {
-      console.log(window.pageYOffset);
       // 按钮
       if (window.pageYOffset >= 400) {
         this.isBtnShow = true;
       } else {
         this.isBtnShow = false;
-      }
-      // 页头
-      if (window.pageYOffset >= 72) {
-        this.isNavFixed = true;
-      } else {
-        this.isNavFixed = false;
       }
     },
     handleBackTop() {
@@ -79,6 +78,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+$g_width: 60%;
+$g_border_radius: 20px;
 #layout {
   height: 100%;
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
@@ -90,27 +91,56 @@ export default {
     position: fixed;
     top: 0;
   }
-  .nav {
-    height: 6em;
-    background: #fff;
-    // margin-top: 6em;
-  }
-  .nav_extra {
-    position: fixed;
-    top: 0;
-  }
-  .showImg {
-    height: 20em;
-    overflow:hidden;
-    position: relative;
-    img {
-      width: inherit;
-      position: absolute;
-      clip: rect(0, 1000px);
+  .nav_container {
+    background: #f7f7f7;
+    .nav {
+      height: 6em;
+      margin: auto;
+      margin-top: 6em;
+      width: $g_width;
+      div {
+        display: inline-block;
+        width: 4em;
+        height: 2em;
+        color: #000;
+        font-weight: 500;
+        font-size: 18px;
+        margin: 1em auto;
+        padding: 6px 16px 0 18px;
+        border-radius: $g_border_radius;
+        cursor: pointer;
+        &:hover {
+          background: #00a1e9;
+          color: #fff;
+        }
+      }
+      .router-link-active {
+          background: #00a1e9;
+          color: #fff;
+      }
+      input {
+        float: right;
+        margin: 1.8em auto;
+        padding: 6px 30px 6px 8px;
+        height: 2.2em;
+        // width: 120px;
+        border-radius: $g_border_radius;
+        border: 1px solid #d0d0d0;
+        background: #fff;
+        outline: none;
+      }
+      i {
+        position: absolute;
+        top: calc( 3em + 23px );
+        right: calc( 20% + 4px );
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
   .footer {
-    width: 60%;
+    width: $g_width;
     padding: 6em 1em;
     margin: auto;
     display: flex;

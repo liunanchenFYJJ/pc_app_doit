@@ -1,5 +1,8 @@
 <template>
   <div id="home">
+    <div class="showImg">
+      <img src="../assets/swim.jpg" alt="">
+    </div>
     <div class="container">
       <div class="inner">
         <h2>附近场馆</h2>
@@ -33,7 +36,7 @@
       <div class="inner">
         <h2>热门赛事</h2>
         <Row :gutter="16">
-          <Col :ms="12" :md="8" :lg="6" v-for="(item, i) in MockData.hotGameLists" :key="i">
+          <Col :ms="12" :md="12" :lg="6" v-for="(item, i) in MockData.hotGameLists" :key="i">
             <goods-item :imgSrc="item.img" :baseRate="10" o_height="400px" i_height="320px">
               <span slot="title">{{item.title}}</span>
               <span slot="rate">{{item.rate}}条评价</span>
@@ -48,6 +51,11 @@
       <div class="inner">
         <h2>特惠热卖</h2>
         <Row :gutter="16">
+          <Col :ms="12" :md="12" :lg="6">
+            <div style="height: 560px; background: #000;">
+
+            </div>
+          </Col>
           <Col :ms="12" :md="12" :lg="6" v-for="(item, i) in MockData.hotSaleLists" :key="i">
             <goods-item :imgSrc="item.img" :baseRate="10">
               <span slot="title">{{item.title}}</span>
@@ -111,22 +119,33 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+$g_width: 60%;
 #home {
   height: 100%;
+  .showImg {
+    height: 20em;
+    overflow:hidden;
+    position: relative;
+    img {
+      width: inherit;
+      position: absolute;
+      clip: rect(0, 1000px);
+    }
+  }
   .container {
     padding-bottom: 6em;
     background: #f7f7f7;
     .inner {
       height: 100%;
-      width: 60%;
+      width: $g_width;
       margin: auto;
       padding: 1em;
       background: #fff;
     }
-    &:nth-child(1) {
+    &:nth-child(2) {
       padding-top: 6em;
     }
-    &:nth-child(2) {
+    &:nth-child(3) {
       // padding-top: 6em;
       .ivu-row {
         height: 200px;
