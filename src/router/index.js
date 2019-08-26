@@ -22,13 +22,6 @@ export default new Router({
       path: '/gym',
       name: 'Gym',
       component: Gym,
-      // children: [
-      //   {
-      //     path: 'details',
-      //     name: 'GymDetails',
-      //     component: GymDetails,
-      //   }
-      // ],
     },
     {
       path: '/gym/:id',

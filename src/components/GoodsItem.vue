@@ -1,5 +1,5 @@
 <template>
-    <div class="card" @click="toGoodItem" :style="{height: o_height}">
+    <div class="card" @click="toGoodItem" :style="{height: `${o_height}px`}">
         <!-- mode="horizonal"水平模式 height以图片的高度来填充 -->
         <div v-if="isHorizonal" class="h">
           <Row type="flex" justify="start" :gutter="16">
@@ -58,7 +58,7 @@ export default {
       default: 6,
     },
     o_height: {
-      type: String,
+      type: Number,
       // default: '290px',
     },
     i_height: {

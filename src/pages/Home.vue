@@ -35,7 +35,7 @@
         <h2>热门赛事</h2>
         <Row>
           <Col :sm="12" :md="12" :lg="6" v-for="(item, i) in MockData.hotGameLists" :key="i">
-            <goods-item :imgSrc="item.img" :baseRate="10" o_height="410px" i_height="320">
+            <goods-item :imgSrc="item.img" :baseRate="10" :o_height="410" :i_height="320">
               <span slot="title">{{item.title}}</span>
               <span slot="rate">{{item.rate}}条评价</span>
               <span slot="address">{{item.address}}</span>

@@ -3,12 +3,12 @@
     <div class="header"></div>
     <div class="nav_container" :class="{ 'nav_fixed': is_nav_fixed }">
       <div class="nav">
-          <router-link tag="div" to="home">首页</router-link>
-          <router-link tag="div" to="gym">票务</router-link>
-          <router-link tag="div" to="train">培训</router-link>
-          <router-link tag="div" to="games">赛事</router-link>
-          <router-link tag="div" to="mall">商城</router-link>
-          <router-link tag="div" to="community">社区</router-link>
+          <router-link tag="div" to="/home">首页</router-link>
+          <router-link tag="div" to="/gym">票务</router-link>
+          <router-link tag="div" to="/train">培训</router-link>
+          <router-link tag="div" to="/games">赛事</router-link>
+          <router-link tag="div" to="/mall">商城</router-link>
+          <router-link tag="div" to="/community">社区</router-link>
           <input type="text" /><Icon size="24" type="ios-search-outline" />
       </div>
     </div>
@@ -132,7 +132,7 @@ $g_background: #f7f7f7;
         margin: 1.8em auto;
         padding: 6px 30px 6px 8px;
         height: 2.2em;
-        // width: 120px;
+        width: 120px;
         border-radius: $g_border_radius;
         border: 1px solid #d0d0d0;
         background: #fff;
@@ -156,6 +156,11 @@ $g_background: #f7f7f7;
     z-index: 20;
     background: $g_background;
     box-shadow: 0 5px 14px #ccc;
+    .nav {
+      i {
+        top: 23px;
+      }
+    }
   }
   .footer {
     width: $g_width;
