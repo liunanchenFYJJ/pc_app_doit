@@ -107,6 +107,7 @@ $g_background: #f7f7f7;
       margin: auto;
       // margin-top: 6em;
       width: $g_width;
+      position: relative;
       div {
         display: inline-block;
         width: 4em;
@@ -140,8 +141,8 @@ $g_background: #f7f7f7;
       }
       i {
         position: absolute;
-        top: calc( 3em + 23px );
-        right: calc( 20% + 4px );
+        top: 23px;
+        right: 4px;
         &:hover {
           cursor: pointer;
         }
@@ -156,11 +157,6 @@ $g_background: #f7f7f7;
     z-index: 20;
     background: $g_background;
     box-shadow: 0 5px 14px #ccc;
-    .nav {
-      i {
-        top: 23px;
-      }
-    }
   }
   .footer {
     width: $g_width;
