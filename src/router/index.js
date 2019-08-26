@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/pages/Home';
-import Ticket from '@/pages/Ticket';
+import Gym from '@/pages/Gym';
+import GymDetails from '@/pages/GymDetails';
 import Test from '@/pages/Test';
 
 Vue.use(Router);
@@ -18,9 +19,21 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/ticket',
-      name: 'Ticket',
-      component: Ticket,
+      path: '/gym',
+      name: 'Gym',
+      component: Gym,
+      // children: [
+      //   {
+      //     path: 'details',
+      //     name: 'GymDetails',
+      //     component: GymDetails,
+      //   }
+      // ],
+    },
+    {
+      path: '/gym/:id',
+      name: 'GymDetails',
+      component: GymDetails,
     },
     {
       path: '/test',

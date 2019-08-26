@@ -1,5 +1,5 @@
 <template>
-  <div id="ticket">
+  <div id="gym">
     <div class="showImg"></div>
     <div class="container">
       <div class="inner">
@@ -26,11 +26,28 @@
       <div class="inner">
         <Row>
           <Col :sm="16" :md="16" :lg="18">
-            <div></div>
+           <Row v-for="(item, i) in MockData.goodLists" :key="i">
+             <Col span="24">
+              <goods-item @goodItemDetails="toGoodDetails(item)" mode="horizontal" :i_width="i_width" :imgSrc="item.img" :baseRate="10">
+                <span slot="title">{{item.title}}</span>
+                <span slot="rate">{{item.rate}}条评价</span>
+                <span slot="address">{{item.address}}</span>
+                <span slot="price">人均消费￥{{item.price}}</span>
+              </goods-item>
+             </Col>
+           </Row>
           </Col>
           <Col :sm="8" :md="8" :lg="6">
-            <div></div>
-            <div></div>
+            <Row v-for="(item, i) in MockData.goodLists" :key="i">
+              <Col span="24">
+                <goods-item :imgSrc="item.img" :baseRate="10">
+                  <span slot="title">{{item.title}}</span>
+                  <span slot="rate">{{item.rate}}条评价</span>
+                  <span slot="address">{{item.address}}</span>
+                  <span slot="price">人均消费￥{{item.price}}</span>
+                </goods-item>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </div>
@@ -41,7 +58,7 @@
 import GoodsItem from '@/components/GoodsItem.vue';
 import Mock from 'mockjs';
 export default {
-  name: 'Ticket',
+  name: 'Gym',
   components: { GoodsItem },
   data() {
     return {
@@ -49,6 +66,7 @@ export default {
       hotGameLists: [],
       hotSaleLists: [],
       MockData: {},
+      i_width: 320,
     };
   },
   created() {
@@ -82,7 +100,15 @@ export default {
     }, 2000);
   },
   methods: {
-
+    toGoodDetails(item) {
+      console.log(item);
+      this.$router.push({
+        path: `gym/${item.id}`,
+        // query: {
+        //   item,
+        // },
+      });
+    },
   },
 };
 </script>
@@ -90,7 +116,7 @@ export default {
 $g_width: 60%;
 $o_default_height: 290px; // GoodItem o_height 原始值
 $g_background: #f7f7f7;
-#ticket {
+#gym {
   height: 100%;
   background-color: $g_background;
   .showImg {

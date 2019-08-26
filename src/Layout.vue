@@ -4,7 +4,7 @@
     <div class="nav_container" :class="{ 'nav_fixed': is_nav_fixed }">
       <div class="nav">
           <router-link tag="div" to="home">首页</router-link>
-          <router-link tag="div" to="ticket">票务</router-link>
+          <router-link tag="div" to="gym">票务</router-link>
           <router-link tag="div" to="train">培训</router-link>
           <router-link tag="div" to="games">赛事</router-link>
           <router-link tag="div" to="mall">商城</router-link>

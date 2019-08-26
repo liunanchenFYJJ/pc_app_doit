@@ -1,20 +1,47 @@
 <template>
     <div class="card" @click="toGoodItem" :style="{height: o_height}">
-        <div>
-            <img :style="{height: i_height}" :src="imgSrc" alt="">
+        <!-- mode="horizonal"水平模式 height以图片的高度来填充 -->
+        <div v-if="isHorizonal" class="h">
+          <Row type="flex" justify="start" :gutter="16">
+            <Col>
+              <div>
+                <img :style="{ width: `${i_width}px`, height: '100%' }" :src="imgSrc" alt="">
+              </div>
+            </Col>
+            <Col>
+              <div class="title">
+                <slot name="title"></slot>
+              </div>
+              <div>
+                <Icon color="#ffac2d" type="ios-star" v-for="n in 4" :key="n"></Icon><Icon color="#ffac2d" type="ios-star" v-if="9.4 >= baseRate"></Icon><Icon color="#ffac2d" type="ios-star-half" v-else></Icon>
+                <slot name="rate"></slot>
+              </div>
+              <div>
+                <slot name="address"></slot>
+              </div>
+              <div>
+                <slot name="price"></slot>
+              </div>
+            </Col>
+          </Row>
         </div>
-        <div>
+        <div v-else class="v">
+          <div>
+            <img :style="{ width: 'inherit', height: `${i_height}px` }" :src="imgSrc" alt="">
+          </div>
+          <div>
             <slot name="title"></slot>
-        </div>
-        <div>
+          </div>
+          <div>
             <Icon color="#ffac2d" type="ios-star" v-for="n in 4" :key="n"></Icon><Icon color="#ffac2d" type="ios-star" v-if="9.4 >= baseRate"></Icon><Icon color="#ffac2d" type="ios-star-half" v-else></Icon>
             <slot name="rate"></slot>
-        </div>
-        <div>
+          </div>
+          <div>
             <slot name="address"></slot>
-        </div>
-        <div>
+          </div>
+          <div>
             <slot name="price"></slot>
+          </div>
         </div>
     </div>
 </template>
@@ -32,11 +59,15 @@ export default {
     },
     o_height: {
       type: String,
-      default: '290px',
+      // default: '290px',
     },
     i_height: {
-      type: String,
-      default: '200px',
+      type: Number,
+      default: 200,
+    },
+    i_width: {
+      type: Number,
+      default: 200,
     },
     mode: {
       type: String,
@@ -46,9 +77,14 @@ export default {
       default: 'vertical',
     }
   },
+  computed: {
+    isHorizonal() {
+      return this.mode === 'horizontal';
+    },
+  },
   methods: {
     toGoodItem() {
-      console.log('click');
+      this.$emit('goodItemDetails');
     },
   },
 };
@@ -63,16 +99,20 @@ export default {
     &:hover {
       background: #f7f7f7;
     }
-    div {
+    div.h {
+      .title {
+        font-weight: 600;
+        font-size: 1.2em;
+      }
+    }
+    div.v {
       width: 100%;
       // height: 200px;
-      &:nth-child(n+2) {
-          height: 1.5em;
-      }
-      img {
-          width: 100%;
-          // height: 200px;
-          padding-bottom: 1em;
+      div {
+        width: 100%;
+        img {
+            padding-bottom: 1em;
+        }
       }
     }
   }
