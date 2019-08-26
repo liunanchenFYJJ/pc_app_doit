@@ -129,8 +129,9 @@ $g_background: #f7f7f7;
           color: #fff;
       }
       input {
-        float: right;
-        margin: 1.8em auto;
+        position: absolute;
+        top: 2em;
+        right: 0;
         padding: 6px 30px 6px 8px;
         height: 2.2em;
         width: 120px;
@@ -141,7 +142,7 @@ $g_background: #f7f7f7;
       }
       i {
         position: absolute;
-        top: 23px;
+        top: 1em;
         right: 4px;
         &:hover {
           cursor: pointer;
