@@ -1,22 +1,26 @@
 <template>
     <div id="gymDetails">
-        details {{$route.params}}
+        <!-- details {{$route.params}} -->
       <Tabs value="ticket">
         <TabPane label="购票" name="ticket">
-          <div slot="ticket"></div>
+          <book-ticket></book-ticket>
         </TabPane>
         <TabPane label="购卡" name="card">
-          <div slot="card"></div>
+          <book-card></book-card>
         </TabPane>
         <TabPane label="场地预定" name="field">
-          <div slot="field"></div>
+          <book-field></book-field>
         </TabPane>
       </Tabs>
     </div >
 </template>
 <script>
+import BookTicket from '@/components/BookTicket';
+import BookCard from '@/components/BookCard';
+import BookField from '@/components/BookField';
 export default {
   name: 'GymDetails',
+  components: { BookTicket, BookCard, BookField },
   created() {
     console.log(this.$route);
     console.log(this);
