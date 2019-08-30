@@ -7,6 +7,7 @@ import Layout from './Layout';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import './theme/index.less';
+import './theme/global_style.scss';
 import { hasPermission } from '@/utils/index';
 
 Vue.use(router);

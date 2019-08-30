@@ -84,9 +84,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-$g_width: 60%;
 $g_border_radius: 20px;
-$g_background: #f7f7f7;
 #layout {
   min-width: 960px;
   height: 100%;
@@ -180,6 +178,9 @@ $g_background: #f7f7f7;
         margin-top: 0.5em;
         &:nth-child(2) {
           margin-top: 1em;
+        }
+        &:hover {
+          cursor: pointer;
         }
       }
     }

@@ -117,9 +117,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-$g_width: 60%;
-$o_default_height: 290px; // GoodItem o_height 原始值
-$g_background: #f7f7f7;
 #home {
   height: 100%;
   .showImg {
