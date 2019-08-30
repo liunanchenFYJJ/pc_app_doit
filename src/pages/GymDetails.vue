@@ -1,17 +1,19 @@
 <template>
     <div id="gymDetails">
         <!-- details {{$route.params}} -->
-      <Tabs value="ticket">
-        <TabPane label="购票" name="ticket">
-          <book-ticket></book-ticket>
-        </TabPane>
-        <TabPane label="购卡" name="card">
-          <book-card></book-card>
-        </TabPane>
-        <TabPane label="场地预定" name="field">
-          <book-field></book-field>
-        </TabPane>
-      </Tabs>
+      <div class="inner">
+        <Tabs value="ticket">
+          <TabPane label="购票" name="ticket">
+            <book-ticket></book-ticket>
+          </TabPane>
+          <TabPane label="购卡" name="card">
+            <book-card></book-card>
+          </TabPane>
+          <TabPane label="场地预定" name="field">
+            <book-field></book-field>
+          </TabPane>
+        </Tabs>
+      </div>
     </div >
 </template>
 <script>
@@ -29,7 +31,13 @@ export default {
 </script>
 <style lang="scss">
   #gymDetails {
-    width: 60%;
-    margin: auto;
+    padding-bottom: 6em;
+    background: $g_background;
+    .inner {
+      height: 100%;
+      width: $g_width;
+      margin: auto;
+      background: #fff;
+    }
   }
 </style>

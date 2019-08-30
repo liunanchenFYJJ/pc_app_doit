@@ -158,6 +158,9 @@ $g_border_radius: 20px;
     box-shadow: 0 5px 14px #ccc;
   }
   .footer {
+    // position: absolute;
+    // bottom: 0;
+    // left: calc( (100% - 1000px)/2 );
     width: $g_width;
     padding: 6em 1em;
     margin: auto;

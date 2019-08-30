@@ -97,7 +97,7 @@ export default {
           'price': 1000,
         }]
       });
-    }, 2000);
+    }, 1000);
   },
   methods: {
     toGoodDetails(item) {
