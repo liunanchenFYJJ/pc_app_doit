@@ -14,15 +14,17 @@
           </TabPane>
         </Tabs>
       </div>
+      <shopping-cart></shopping-cart>
     </div >
 </template>
 <script>
 import BookTicket from '@/components/BookTicket';
 import BookCard from '@/components/BookCard';
 import BookField from '@/components/BookField';
+import ShoppingCart from '@/components/ShoppingCart';
 export default {
   name: 'GymDetails',
-  components: { BookTicket, BookCard, BookField },
+  components: { BookTicket, BookCard, BookField, ShoppingCart },
   created() {
     console.log(this.$route);
     console.log(this);
@@ -35,7 +37,7 @@ export default {
     background: $g_background;
     .inner {
       height: 100%;
-      width: $g_width;
+      width: ($g_width);
       margin: auto;
       background: #fff;
     }
