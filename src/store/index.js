@@ -5,8 +5,9 @@ Vue.use(Vuex);
 
 const state = {
   btnList: ['sys:role:add', 'sys:role:edit'],
-  // num: 0, // 按钮组的数量
+  num: 0, // 货物数量
   // totalPrice: 0,
+  shoppingCartList: [],
 };
 
 const mutations = {

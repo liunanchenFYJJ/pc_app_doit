@@ -47,9 +47,29 @@ export default {
   },
   methods: {
     countPriz({ item, num }) {
-      console.log(item);
+      this.setToCart(item); // 把item存入shoppingCartList
       // this.totalPriz = item.price * num;
-    }
+    },
+    setToCart(item) {
+      console.log(item);
+      console.log(this.$store.state.shoppingCartList);
+      let inList = false;
+      if (!this.$store.state.shoppingCartList.length) {
+        this.$store.state.shoppingCartList.push(item);
+      } else {
+        for (let i = 0; i < this.$store.state.shoppingCartList.length; i++) {
+          const element = this.$store.state.shoppingCartList[i];
+          if (element.id === item.id) {
+            element.num++;
+            inList = true;
+            return;
+          };
+        }
+        if (!inList) {
+          this.$store.state.shoppingCartList.push(item);
+        }
+      };
+    },
   },
   created() {
     setTimeout(() => {
@@ -61,6 +81,7 @@ export default {
           'rate': 9.8,
           'address': '世伦路',
           'price': 1000,
+          'num': 1,
         }],
       });
     }, 2000);
