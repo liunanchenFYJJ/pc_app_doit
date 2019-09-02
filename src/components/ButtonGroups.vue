@@ -1,6 +1,6 @@
 <template>
     <ButtonGroup shape="circle">
-        <Button @click="minusNum"><Icon type="ios-add" size="16" color="#00a1e9" /></Button>
+        <Button :disabled="isBtnDisabled" @click="minusNum(item)"><Icon type="ios-remove" size="16" color="#00a1e9" /></Button>
         <Button type="primary" style="width: 54px;">{{num}}</Button>
         <transition
             @before-enter="beforeEnter"
@@ -8,32 +8,45 @@
             @after-enter="afterEnter">
             <div v-show="isBallShow" class="ball"></div>
         </transition>
-        <Button @click="addNum"><Icon type="ios-add" size="16" color="#00a1e9" /></Button>
+        <Button @click="addNum(item)"><Icon type="ios-add" size="16" color="#00a1e9" /></Button>
     </ButtonGroup>
 </template>
 <script>
 export default {
   name: 'ButtonGroups',
-//   props: {
-//     num: {
-//       type: Number,
-//       default: 0,
-//     },
-//   },
+  props: {
+    item: {
+      type: Object,
+    },
+  },
   data() {
     return {
-      num: 100,
+      num: 0,
       isBallShow: false,
+      // isBtnDisabled: true,
     };
   },
-  computed: {},
+  computed: {
+  //   num() {
+  //     return this.$store.state.num;
+  //   },
+    isBtnDisabled() {
+      return this.num <= 0;
+    }
+  },
   methods: {
-    addNum() {
+    addNum(item) {
       this.num++;
+      // console.log(this);
       this.isBallShow = true;
+      console.log(item);
+      this.$emit('countSum', { item, num: this.num });
+      // this.$store.commit('addGoods', { item, num: this.num });
     },
-    minusNum() {
+    minusNum(item) {
       this.num--;
+      this.$emit('countSum', { item, num: this.num });
+      // this.$store.commit('delGoods', { item, num: this.num });
     },
     beforeEnter(el) {
       el.style.transform = 'translate(0, 0)';
@@ -43,7 +56,9 @@ export default {
       console.log(document.querySelector('#cart'));
       let shopCart = document.querySelector('#cart');
       el.style.transform = `translate(${shopCart.offsetLeft}px, ${shopCart.offsetTop}px)`;
+      // el.style.transform = `translate(${1074}px, ${shopCart.offsetTop}px)`;
       el.style.transition = 'all .8s ease-in-out';
+      // el.style.transition = 'all .8s cubic-bezier(.17,-.67,.83,.67)';
       done(); // 去除停顿时间
     },
     afterEnter(el) {
@@ -61,6 +76,6 @@ export default {
         position: absolute;
         top: 8px;
         right: 15px;
-        z-index: 20;
+        z-index: 100;
     }
 </style>

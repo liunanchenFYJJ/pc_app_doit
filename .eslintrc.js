@@ -36,5 +36,7 @@ module.exports = {
       "asyncArrow": "always"
     }],
     "comma-dangle": [0, "never"],
+    "allowShortCircuit": true,
+    // "allowTernary": false,
   }
 }
