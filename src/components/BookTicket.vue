@@ -3,10 +3,10 @@
       <div class="container">
         <div class="inner">
           <Row :gutter="16">
-            <Col :sm="4" :md="4" :lg="2">
+            <Col :sm="4" :md="4" :lg="4">
               <div>票类别：</div>
             </Col>
-            <Col :sm="18" :md="18" :lg="22">
+            <Col :sm="18" :md="18" :lg="18">
               <div></div>
             </Col>
           </Row>
@@ -106,7 +106,11 @@ export default {
           min-height: 500px;
           // height: calc( 100% -  24em);
           .item_ticket { // 票样式
-
+            height: 200px;
+            background: lightblue;
+            margin-bottom: 1em;
+            display: flex;
+            
           }
         }
       }

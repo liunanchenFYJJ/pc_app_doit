@@ -63,7 +63,8 @@ $box_shadow: inset 2px 2px 8px #eee;
   height: 50px;
   position: fixed;
   bottom: 0;
-  right: 0;
+  // right: 100px;
+  left: calc(calc(100% - 1000px)/2 + 710px);
   z-index: 100;
   box-shadow: $box_shadow;
   .item {

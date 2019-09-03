@@ -1,20 +1,23 @@
 <template>
     <div id="gymDetails">
-        <!-- details {{$route.params}} -->
       <div class="inner">
-        <Tabs value="ticket">
-          <TabPane label="购票" name="ticket">
-            <book-ticket></book-ticket>
-          </TabPane>
-          <TabPane label="购卡" name="card">
-            <book-card></book-card>
-          </TabPane>
-          <TabPane label="场地预定" name="field">
-            <book-field></book-field>
-          </TabPane>
-        </Tabs>
+        <div>
+          <Tabs value="ticket">
+            <TabPane label="购票" name="ticket">
+              <book-ticket></book-ticket>
+            </TabPane>
+            <TabPane label="购卡" name="card">
+              <book-card></book-card>
+            </TabPane>
+            <TabPane label="场地预定" name="field">
+              <book-field></book-field>
+            </TabPane>
+          </Tabs>
+        </div>
+        <div>
+          <shopping-cart></shopping-cart>
+        </div>
       </div>
-      <shopping-cart></shopping-cart>
     </div >
 </template>
 <script>
@@ -37,9 +40,19 @@ export default {
     background: $g_background;
     .inner {
       height: 100%;
-      width: ($g_width);
+      width: $g_width;
       margin: auto;
-      background: #fff;
+      & > div {
+        display: inline-block;
+        background: lightpink;
+        &:nth-child(1) {
+          background: #fff;
+          width: 700px;
+        }
+        &:nth-child(2) {
+          width: 272px;
+        }
+      }
     }
   }
 </style>
