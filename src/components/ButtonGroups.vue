@@ -1,7 +1,7 @@
 <template>
     <ButtonGroup shape="circle">
-        <Button :disabled="isBtnDisabled" @click="minusNum(item)"><Icon type="ios-remove" size="16" color="#00a1e9" /></Button>
-        <Button type="primary" style="width: 54px;">{{num}}</Button>
+        <Button :disabled="item.num <= 0" @click="minusNum(item)"><Icon type="ios-remove" size="16" color="#00a1e9" /></Button>
+        <Button type="primary" style="width: 54px;">{{item.num}}</Button>
         <transition
             @before-enter="beforeEnter"
             @enter="enter"
@@ -21,44 +21,28 @@ export default {
   },
   data() {
     return {
-      num: 0,
       isBallShow: false,
-      // isBtnDisabled: true,
     };
   },
-  computed: {
-  //   num() {
-  //     return this.$store.state.num;
-  //   },
-    isBtnDisabled() {
-      return this.num <= 0;
-    }
-  },
+  computed: {},
   methods: {
     addNum(item) {
-      this.num++;
-      // console.log(this);
+      item.num++;
       this.isBallShow = true;
-      console.log(item);
-      this.$emit('countSum', { item, num: this.num });
-      // this.$store.commit('addGoods', { item, num: this.num });
+      this.$emit('countSum', { item, sign: 'ADD' });
     },
     minusNum(item) {
-      this.num--;
-      this.$emit('countSum', { item, num: this.num });
-      // this.$store.commit('delGoods', { item, num: this.num });
+      item.num--;
+      this.$emit('countSum', { item, sign: 'MINUS' });
     },
     beforeEnter(el) {
       el.style.transform = 'translate(0, 0)';
     },
     enter(el, done) {
       el.offsetWidth;
-      console.log(document.querySelector('#cart'));
       let shopCart = document.querySelector('#cart');
       el.style.transform = `translate(${shopCart.offsetLeft}px, ${shopCart.offsetTop}px)`;
-      // el.style.transform = `translate(${1074}px, ${shopCart.offsetTop}px)`;
-      el.style.transition = 'all .8s ease-in-out';
-      // el.style.transition = 'all .8s cubic-bezier(.17,-.67,.83,.67)';
+      el.style.transition = 'all .4s ease-in-out';
       done(); // 去除停顿时间
     },
     afterEnter(el) {

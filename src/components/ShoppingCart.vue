@@ -1,9 +1,22 @@
 <template>
     <div ref="cart" id="cart">
       <!-- <transition-group> -->
-        <div v-for="(item, i) in shoppingCartList" :key="i" :style="{ top: `${-(i+1)*50}px` }" class="item">{{item.id}}-{{item.title}}</div>
+        <div v-for="(item, i) in shoppingCartList" v-if="item.num > 0" :key="i" :style="{ top: `${-(i+1)*50}px` }" class="item">
+          <div>
+            {{item.id}}-{{item.title}}神十九大圣诞节佛阿三大师傅但是
+          </div>
+          <ButtonGroup size="small">
+            <Button @click="handleNum(item, 'del')"><Icon type="ios-remove"/></Button>
+            <Button style="width: 30px;">{{item.num}}</Button>
+            <Button @click="handleNum(item, 'add')"><Icon type="ios-add"/></Button>
+          </ButtonGroup>
+          <div>￥{{(item.price * item.num).toFixed(2)}}</div>
+        </div>
       <!-- </transition-group> -->
-      <div class="item">shoppingCart</div>
+      <div class="item">
+        shoppingCart-num{{23}}-total￥{{totalCartPriz}}
+        <Icon size="36" color="#fff" type="ios-cart"/>
+      </div>
     </div>
 </template>
 <script>
@@ -11,11 +24,23 @@ export default {
   name: 'ShoppingCart',
   computed: {
     shoppingCartList() {
-      return this.$store.state.shoppingCartList;
+      return this.$store.getters.realShoppingCart;
     },
-    // itemNum() {
-    //   return this.$store.state.num;
-    // },
+    totalCartPriz() {
+      return this.$store.getters.totalCartPriz;
+    },
+  },
+  methods: {
+    handleNum(item, sign) {
+      switch (sign) {
+        case 'add':
+          item.num++;
+          break;
+        default:
+          item.num--;
+          break;
+      }
+    },
   },
 };
 </script>
@@ -36,6 +61,27 @@ $box_shadow: inset 2px 2px 8px #eee;
     position: absolute;
     background: #f7f7f7;
     box-shadow: $box_shadow;
+    padding: 0 0.5em 0 0.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    border-bottom: 1px solid grey;
+    & > div:nth-child(1)  {
+      width: 100px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    & > div:nth-child(3)  {
+      width: 65px;
+      color: #f60;
+    }
+    &:last-child {
+      background: $g_default_color;
+      box-shadow: none;
+      display: flex;
+    }
   }
 }
 </style>

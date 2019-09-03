@@ -10,6 +10,19 @@ const state = {
   shoppingCartList: [],
 };
 
+const getters = {
+  realShoppingCart: (state) => {
+    return state.shoppingCartList.filter(item => item.num >= 1);
+  },
+  totalCartPriz: (state) => {
+    let p = 0;
+    state.shoppingCartList.forEach(element => {
+      p += element.price * element.num;
+    });
+    return p;
+  },
+};
+
 const mutations = {
   addGoods(state, { item, num }) {
     state.num++;
@@ -23,5 +36,6 @@ const mutations = {
 
 export default new Vuex.Store({
   state,
+  getters,
   mutations,
 });
