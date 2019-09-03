@@ -3,7 +3,7 @@
       <!-- <transition-group> -->
         <div v-for="(item, i) in shoppingCartList" v-if="item.num > 0" :key="i" :style="{ top: `${-(i+1)*50}px` }" class="item">
           <div>
-            {{item.id}}-{{item.title}}神十九大圣诞节佛阿三大师傅但是
+            {{item.title}}神十九大圣诞节佛阿三大师傅但是
           </div>
           <ButtonGroup size="small">
             <Button @click="handleNum(item, 'del')"><Icon type="ios-remove"/></Button>
@@ -14,8 +14,13 @@
         </div>
       <!-- </transition-group> -->
       <div class="item">
-        shoppingCart-num{{23}}-total￥{{totalCartPriz}}
-        <Icon size="36" color="#fff" type="ios-cart"/>
+        <Badge :count="totalCartPriz.count">
+          <Icon size="36" color="#fff" type="ios-cart"/>
+        </Badge>
+        ￥{{totalCartPriz.p}}
+        <!-- shoppingCart -->
+        <!-- num{{totalCartPriz.count}} -->
+        <div @click="toCheckout">去结算 ></div>
       </div>
     </div>
 </template>
@@ -40,6 +45,12 @@ export default {
           item.num--;
           break;
       }
+    },
+    toCheckout() {
+      this.$router.push({
+        name: 'Checkout',
+        params: {},
+      });
     },
   },
 };
@@ -79,8 +90,19 @@ $box_shadow: inset 2px 2px 8px #eee;
     }
     &:last-child {
       background: $g_default_color;
-      box-shadow: none;
+      // box-shadow: none;
       display: flex;
+      justify-content: space-between;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      padding-right: 0;
+      div {
+        height: inherit;
+        padding: 10px 20px;
+        background: #f60;
+      }
     }
   }
 }

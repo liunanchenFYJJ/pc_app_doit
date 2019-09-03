@@ -15,16 +15,11 @@
         <div class="inner">
           <Row :gutter="16">
             <Col v-for="(item, index) in MockData.ticketLists" :key="index" :sm="24" :md="24" :lg="24">
-              <div>{{item.id}}-{{item.price}}
+              <div class="item_ticket">
+                {{item.title}}-{{item.price}}
                 <button-groups @countSum="countPriz" :item="item"></button-groups>
-                <!-- {{item.price * num}} -->
               </div>
             </Col>
-            <!-- <Col :sm="24" :md="14" :lg="24">
-              <div>6
-                <button-groups></button-groups>
-              </div>
-            </Col> -->
           </Row>
         </div>
       </div>
@@ -40,14 +35,11 @@ export default {
   },
   data() {
     return {
-      // num: 0,
-      // totalPriz: 0,
       MockData: {},
     };
   },
   methods: {
     countPriz({ item, sign }) {
-      // this.totalPriz = item.price * num;
       if (sign === 'ADD') {
         this.setToCart(item); // 把item存入shoppingCartList
       } else {
@@ -110,9 +102,12 @@ export default {
       .inner {
         padding: 1em;
         &:nth-child(3) {
-          margin-top: 1em;
+          // margin-top: 1em;
           min-height: 500px;
           // height: calc( 100% -  24em);
+          .item_ticket { // 票样式
+
+          }
         }
       }
     }

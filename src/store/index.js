@@ -16,10 +16,12 @@ const getters = {
   },
   totalCartPriz: (state) => {
     let p = 0;
+    let count = 0;
     state.shoppingCartList.forEach(element => {
       p += element.price * element.num;
+      count += element.num;
     });
-    return p;
+    return {p, count};
   },
 };
 
