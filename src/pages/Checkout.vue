@@ -1,5 +1,5 @@
 <template>
     <div>
-        checkout
+        checkout-支付页面
     </div>
 </template>

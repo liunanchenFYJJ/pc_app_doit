@@ -16,7 +16,16 @@
           <Row :gutter="16">
             <Col v-for="(item, index) in MockData.ticketLists" :key="index" :sm="24" :md="24" :lg="24">
               <div class="item_ticket">
-                {{item.title}}-{{item.price}}
+                <div class="ticket">
+                  <div>
+                    <div class="spot_left"></div>
+                    {{item.title}}
+                  </div>
+                  <div>
+                    <div class="spot_right"></div>
+                    {{item.price}}
+                  </div>
+                </div>
                 <button-groups @countSum="countPriz" :item="item"></button-groups>
               </div>
             </Col>
@@ -97,6 +106,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+  // .spot {
+  //   width: 16px;
+  //   height: 16px;
+  //   background: #fff;
+  //   border-radius: 50%;
+  // }
   #bookTicket {
     .container {
       .inner {
@@ -105,12 +120,43 @@ export default {
           // margin-top: 1em;
           min-height: 500px;
           // height: calc( 100% -  24em);
-          .item_ticket { // 票样式
+          .item_ticket {
+            width: 100%;
             height: 200px;
-            background: lightblue;
+            // background: lightblue;
+            padding: 2em;
             margin-bottom: 1em;
             display: flex;
-            
+            .ticket {
+              width: 300px;
+              height: 140px;
+              background: $g_default_color;
+              display: flex;
+              & > div{
+                width: 50%;
+                height: inherit;
+                background: $g_default_color;
+                position: relative;
+                &:nth-child(1) {
+                  border-right: 1px dashed #fff;
+                }
+                & > div {
+                  // @import "spot";
+                  width: 16px;
+                  height: 16px;
+                  background: #fff;
+                  border-radius: 50%;
+                  position: absolute;
+                  top: 50%;
+                }
+                .spot_left {
+                  left: -8px;
+                }
+                .spot_right {
+                  right: -8px;
+                }
+              }
+            }
           }
         }
       }

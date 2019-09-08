@@ -1,5 +1,5 @@
 <template>
-  <div id="layout">
+  <div id="layout" v-cloak>
     <div class="header"></div>
     <div class="nav_container" :class="{ 'nav_fixed': is_nav_fixed }">
       <div class="nav">
@@ -86,6 +86,9 @@ export default {
 <style lang="scss" scoped>
 $g_border_radius: 20px;
 #layout {
+  [v-cloak] {
+    display: none;
+  }
   min-width: 960px;
   height: 100%;
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
