@@ -17,14 +17,9 @@ Vue.use(iView);
 
 Vue.prototype.hasPermission = hasPermission;
 Vue.prototype.$axios = axios;
-axios.defaults = {
-  baseURL: '/api',
-  headers: {
-    post: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-  },
-};
+// Vue.prototype.HOST = '/api';
+// axios.defaults.baseURL = '/api';
+axios.defaults.headers['Content-Type'] = 'application/json;charset=UTF-8';
 
 Vue.config.productionTip = false;
 
