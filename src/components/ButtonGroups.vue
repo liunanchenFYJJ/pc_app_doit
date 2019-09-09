@@ -32,7 +32,7 @@ export default {
       this.$emit('countSum', { item, sign: 'ADD' });
     },
     minusNum(item) {
-      if (item.num === 1) { // 逻辑里面进一步判断是否可以继续减
+      if (item.num === 0) { // 逻辑里面进一步判断是否可以继续减
         return;
       }
       item.num--;

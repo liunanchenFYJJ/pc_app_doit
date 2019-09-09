@@ -17,13 +17,19 @@
             <Col v-for="(item, index) in MockData.ticketLists" :key="index" :sm="24" :md="24" :lg="24">
               <div class="item_ticket">
                 <div class="ticket">
-                  <div>
-                    <div class="spot_left"></div>
-                    {{item.title}}
+                  <div class="piece">
+                    <div class="spot spot_left"></div>
+                    <div>
+                      <Icon color="#fff" size="36" type="md-headset" />
+                      <div>{{item.title}}</div>
+                    </div>
                   </div>
-                  <div>
-                    <div class="spot_right"></div>
-                    {{item.price}}
+                  <div class="piece">
+                    <div class="spot spot_right"></div>
+                    <div>
+                      ￥{{item.price}}<br>
+                      {{item.time}}
+                    </div>
                   </div>
                 </div>
                 <button-groups @countSum="countPriz" :item="item"></button-groups>
@@ -37,6 +43,7 @@
 <script>
 import ButtonGroups from './ButtonGroups';
 import Mock from 'mockjs';
+const Random = Mock.Random;
 export default {
   name: 'BookTicket',
   components: {
@@ -93,11 +100,11 @@ export default {
     this.MockData = Mock.mock({
       'ticketLists|6': [{
         'id|+1': 1,
-        'img': 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566215007264&di=2795f9a4d030891b83edeb928048237f&imgtype=0&src=http%3A%2F%2Fi2.hdslb.com%2Fbfs%2Farchive%2F61c712f4a4da4e7b13e22de8a1a6a652348ee102.jpg', // 加载的动画 && 加载完没有图片的，给个默认图片
-        'title': '黄焖鸡',
-        'rate': 9.8,
-        'address': '世伦路',
-        'price': 1000,
+        'icon': '#icon-youyong',
+        'title': Random.paragraph(1, 10),
+        'rate': Random.integer(0, 10),
+        'price': Random.integer(60, 100),
+        'time': Random.datetime(),
         'num': 0,
       }],
     });
@@ -113,6 +120,9 @@ export default {
   //   border-radius: 50%;
   // }
   #bookTicket {
+    // .ivu-col {
+    //   border-bottom: 1px solid #e8eaec;
+    // }
     .container {
       .inner {
         padding: 1em;
@@ -122,17 +132,20 @@ export default {
           // height: calc( 100% -  24em);
           .item_ticket {
             width: 100%;
-            height: 200px;
+            height: inherit;
             // background: lightblue;
             padding: 2em;
             margin-bottom: 1em;
             display: flex;
+            &:hover {
+              background: #e8eaec;
+            }
             .ticket {
               width: 300px;
               height: 140px;
               background: $g_default_color;
               display: flex;
-              & > div{
+              & > div.piece{ // 票 左右两块
                 width: 50%;
                 height: inherit;
                 background: $g_default_color;
@@ -140,14 +153,14 @@ export default {
                 &:nth-child(1) {
                   border-right: 1px dashed #fff;
                 }
-                & > div {
+                & > div.spot {
                   // @import "spot";
                   width: 16px;
                   height: 16px;
                   background: #fff;
                   border-radius: 50%;
                   position: absolute;
-                  top: 50%;
+                  top: calc( 50% - (16px/2) );
                 }
                 .spot_left {
                   left: -8px;
@@ -155,7 +168,19 @@ export default {
                 .spot_right {
                   right: -8px;
                 }
+                & > div:nth-child(2) { // 票内容样式
+                  // background: lightgreen;
+                  width: 100%;
+                  height: inherit;
+                  padding: 1.2em;
+                  text-align: center;
+                  font-size: 20px;
+                  color: #fff;
+                }
               }
+            }
+            .ivu-btn-group {
+              margin: auto;
             }
           }
         }

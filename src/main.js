@@ -9,12 +9,22 @@ import 'iview/dist/styles/iview.css';
 import './theme/index.less';
 import './theme/global_style.scss';
 import { hasPermission } from '@/utils/index';
+import axios from 'axios';
 
 Vue.use(router);
 Vue.use(store);
 Vue.use(iView);
 
 Vue.prototype.hasPermission = hasPermission;
+Vue.prototype.$axios = axios;
+axios.defaults = {
+  baseURL: '/api',
+  headers: {
+    post: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  },
+};
 
 Vue.config.productionTip = false;
 
