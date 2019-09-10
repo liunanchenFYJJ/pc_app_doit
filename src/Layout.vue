@@ -46,8 +46,10 @@
   </div>
 </template>
 <script>
+import Login from '@/pages/Login';
 export default {
   name: 'Layout',
+  components: { Login },
   data() {
     return {
       isBtnShow: false,

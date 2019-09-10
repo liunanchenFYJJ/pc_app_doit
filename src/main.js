@@ -3,7 +3,7 @@
 import Vue from 'vue';
 import router from './router';
 import store from './store';
-import Layout from './Layout';
+import App from './App';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import './theme/index.less';
@@ -23,11 +23,30 @@ axios.defaults.baseURL = 'https://dtwx3.doit10019.com/diantuo/';
 
 Vue.config.productionTip = false;
 
+router.beforeEach((to, from, next) => {
+  // to and from are both route objects. must call `next`.
+  console.log(to);
+  if (to.matched.some(res => res.meta.isLogin)) {
+    if (sessionStorage['username']) {
+      next();
+    } else {
+      next({
+        path: '/login',
+        query: {
+          redirect: to.fullPath,
+        },
+      });
+    };
+  } else {
+    next();
+  };
+});
+
 /* eslint-disable no-new */
 new Vue({
-  el: '#layout',
+  el: '#app',
   router,
   store,
-  components: { Layout },
-  template: '<Layout/>',
+  components: { App },
+  template: '<App/>',
 });

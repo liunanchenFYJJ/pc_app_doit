@@ -12,9 +12,9 @@
             'cursor': itemIn.status === 0 ? 'pointer' : 'not-allowed'}"
             :class="content_style" @click="handleCellClick($event, itemIn)">
               <Tooltip placement="top" :delay="500">
-                {{itemIn.money}}-{{itemIn.status}}
+                {{itemIn.money}}
                 <div slot="content">
-                  <p>{{item}}</p>
+                  <p>{{item.status}}</p>
                   <p><i>Can customize the style</i></p>
                 </div>
               </Tooltip>
@@ -90,8 +90,8 @@ export default {
       };
       this.$axios({
         method: 'POST',
-        // url: 'fieldSale/listFieldSale.do',
-        url: 'http://192.168.1.254:8080/diantuo/fieldSale/listFieldSale.do',
+        url: 'fieldSale/listFieldSale.do',
+        // url: 'http://192.168.1.254:8080/diantuo/fieldSale/listFieldSale.do',
         data: data,
       }).then(res => {
         if (res.data.code === 200) {
@@ -116,16 +116,17 @@ export default {
         // 场地开始时间，结束时间
         let startTime = this.tableFieldData[0].data[0].time.split('-')[0];
         let endTime = this.tableFieldData[0].data[this.tableFieldData[0].data.length - 1].time.split('-')[1];
-        let total_count = this.tableFieldData.length;
+        let total_count = this.tableFieldData[0].data.length;
         // 现在时间
         let now = moment().format('HH:mm');
         // 总分钟数-已过分钟数
         let total_mins = parseInt(endTime.split(':')[0]) * 60 + parseInt(endTime.split(':')[1]) - (parseInt(startTime.split(':')[0]) * 60 + parseInt(startTime.split(':')[1]));
         let past_mins = parseInt(now.split(':')[0]) * 60 + parseInt(now.split(':')[1]) - (parseInt(startTime.split(':')[0]) * 60 + parseInt(startTime.split(':')[1]));
         // 计算高度
+        // 1320 / 40 * 22 = 1173 / x
         let line_top = (total_count * SINGAL_CELL_HEIGHT * past_mins / total_mins).toFixed(2);
         this.$refs['line'].style.top = `${130 + parseFloat(line_top)}px`;
-        this.$refs['line'].style.color = 'red';
+        this.$refs['line'].style.borderTop = '1px solid red';
       }
     },
     /**
@@ -185,11 +186,14 @@ export default {
         .ivu-tooltip { // tooltip和单元格大小相等
           width: inherit;
           height: inherit;
+          div > p {
+            white-space: normal;
+          }
         }
       }
     }
     .line {
-      border-top: 1px solid red;
+      border-top: 1px solid #fff;
       position: absolute;
       top: 130px;
       width: 100%;
