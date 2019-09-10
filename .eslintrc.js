@@ -37,6 +37,7 @@ module.exports = {
     }],
     "comma-dangle": [0, "never"],
     "allowShortCircuit": true,
+    "camelcase": [0, "never"],
     // "allowTernary": false,
   }
 }

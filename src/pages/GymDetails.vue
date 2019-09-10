@@ -9,7 +9,7 @@
             <TabPane label="购卡" name="card">
               <book-card></book-card>
             </TabPane>
-            <TabPane label="场地预定" name="field">
+            <TabPane label="场地预定" name="field" style="overflow-x: auto; height: 720px;">
               <book-field></book-field>
             </TabPane>
           </Tabs>
