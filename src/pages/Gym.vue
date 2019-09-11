@@ -121,7 +121,7 @@ export default {
     margin: auto;
     height: 26em;
     background: url('../assets/swim.jpg') no-repeat;
-    background-size: 100%;
+    background-size: cover;
   }
   .container {
     padding-bottom: 6em;

@@ -54,7 +54,12 @@ export default {
     },
     signIn() {
       sessionStorage.setItem('username', this.phoneNum);
+      console.log(this.$router.currentRoute.fullPath); // /login?redirect=/checkout
       // 登录成功后，跳转刚刚购买的页面
+      let url = decodeURIComponent(this.$router.currentRoute.fullPath).split('=')[1];
+      this.$router.push({
+        path: decodeURIComponent(url)
+      });
     },
   },
 };

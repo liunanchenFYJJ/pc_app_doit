@@ -123,7 +123,8 @@ export default {
     width: 100%;
     height: 26em;
     background: url('../assets/swim.jpg') no-repeat;
-    background-size: 100%;
+    background-size: cover;
+    background-position-y: -30em;
   }
   .container {
     padding-bottom: 6em;
