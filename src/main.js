@@ -10,6 +10,7 @@ import './theme/index.less';
 import './theme/global_style.scss';
 import { hasPermission } from '@/utils/index';
 import axios from 'axios';
+import REGEXP from '@/utils/regExp';
 
 Vue.use(router);
 Vue.use(store);
@@ -22,6 +23,8 @@ axios.defaults.baseURL = 'https://dtwx3.doit10019.com/diantuo/';
 // axios.defaults.headers['Content-Type'] = 'application/json;charset=UTF-8';
 
 Vue.config.productionTip = false;
+
+Vue.prototype.REGEXP = REGEXP;
 
 router.beforeEach((to, from, next) => {
   // to and from are both route objects. must call `next`.

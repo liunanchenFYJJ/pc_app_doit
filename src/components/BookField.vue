@@ -74,7 +74,7 @@ export default {
       this.draw_line();
     }, 1000 * 60);
   },
-  destroyed() {
+  beforeDestroy() {
     console.log('close timer...');
     this.line_timer && clearInterval(this.line_timer);
   },

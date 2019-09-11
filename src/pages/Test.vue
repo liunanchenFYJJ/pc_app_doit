@@ -6,11 +6,3 @@
         <Button type="error">Error</Button>
     </div>
 </template>
-<script>
-import {b} from '@/utils/test';
-export default {
-  created() {
-    b();
-  },
-};
-</script>
