@@ -92,12 +92,11 @@ $g_border_radius: 20px;
     display: none;
   }
   min-width: 960px;
-  height: 100%;
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   .header {
     width: 100%;
     height: 6em;
-    background: grey;
+    background: #bdbdbd;
     // z-index: 100;
     // position: fixed;
     // top: 0;

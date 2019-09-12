@@ -3,7 +3,7 @@
       <!-- <transition-group> -->
         <div v-for="(item, i) in shoppingCartList" v-if="item.num > 0" :key="i" :style="{ top: `${-(i+1)*50}px` }" class="item">
           <div>
-            {{item.title}}神十九大圣诞节佛阿三大师傅但是
+            {{item.title}}
           </div>
           <ButtonGroup size="small">
             <Button @click="handleNum(item, 'del')"><Icon type="ios-remove"/></Button>

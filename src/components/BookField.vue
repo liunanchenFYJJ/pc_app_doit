@@ -1,7 +1,7 @@
 <template>
     <div id="BookField">
         <!-- <Table border :columns="column" :data="tableFieldData"></Table> -->
-        <div class="signs">signs</div>
+        <div class="signs">场地类别：台球</div>
         <template>
           <div v-for="(item, index) in tableFieldData" :key="index" class="container">
             <div class="title">
@@ -154,8 +154,8 @@ export default {
     .signs {
       width: 100%;
       height: 50px;
-      background: #187;
-      padding: 0 0 1em 0;
+      // background: #187;
+      padding: 0 0 1em 1em;
     }
     .container {
       border: $border;

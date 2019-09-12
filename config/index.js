@@ -49,8 +49,9 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: 'static', // 绝对路径引用
     assetsPublicPath: '/',
+    // assetsPublicPath: './', // 打包改 '/' TODO: 打包用 
 
     /**
      * Source Maps

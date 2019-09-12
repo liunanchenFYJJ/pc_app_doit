@@ -30,6 +30,7 @@ export default {
     this.timer && clearInterval(this.timer);
   },
   methods: {
+    // TODO: 定时器多次点击变快
     sendIDCode() {
       if (this.isClickAble) {
         this.timer = setInterval(() => {

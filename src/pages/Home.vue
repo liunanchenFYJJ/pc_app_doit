@@ -7,10 +7,10 @@
         <Row>
           <Col :sm="12" :md="12" :lg="8" v-for="(item, i) in MockData.goodLists" :key="i">
             <goods-item :imgSrc="item.img" :baseRate="10">
-              <span slot="title">{{item.title}}</span>
-              <span slot="rate">{{item.rate}}条评价</span>
+              <span slot="title" style="font-size: 16px;">{{item.title}}</span>
+              <span slot="rate">{{item.rate}} {{item.comment}}条评价</span>
               <span slot="address">{{item.address}}</span>
-              <span slot="price">人均消费￥{{item.price}}</span>
+              <span slot="price">人均消费<span style="color: #ffac2d">￥{{item.price}}</span></span>
             </goods-item>
           </Col>
         </Row>
@@ -20,10 +20,10 @@
       <div class="inner">
         <h2>超值课程</h2>
         <Row>
-          <Col :sm="16" :md="16" :lg="18">
+          <Col :sm="15" :md="15" :lg="15">
             <div></div>
           </Col>
-          <Col :sm="8" :md="8" :lg="6">
+          <Col :sm="9" :md="9" :lg="9">
             <div></div>
             <div></div>
           </Col>
@@ -35,11 +35,11 @@
         <h2>热门赛事</h2>
         <Row>
           <Col :sm="12" :md="12" :lg="6" v-for="(item, i) in MockData.hotGameLists" :key="i">
-            <goods-item :imgSrc="item.img" :baseRate="10" :o_height="410" :i_height="320">
-              <span slot="title">{{item.title}}</span>
-              <span slot="rate">{{item.rate}}条评价</span>
+            <goods-item :imgSrc="item.img" :baseRate="10" :o_height="410" :i_height="310">
+              <span slot="title" style="font-size: 16px;">{{item.title}}</span>
+              <span slot="rate">{{item.rate}} {{item.comment}}条评价</span>
               <span slot="address">{{item.address}}</span>
-              <span slot="price">人均消费￥{{item.price}}</span>
+              <span slot="price">人均消费<span style="color: #ffac2d">￥{{item.price}}</span></span>
             </goods-item>
           </Col>
         </Row>
@@ -56,10 +56,10 @@
           </Col>
           <Col :sm="12" :md="12" :lg="6" v-for="(item, i) in MockData.hotSaleLists" :key="i">
             <goods-item :imgSrc="item.img" :baseRate="10">
-              <span slot="title">{{item.title}}</span>
-              <span slot="rate">{{item.rate}}条评价</span>
+              <span slot="title" style="font-size: 16px;">{{item.title}}</span>
+              <span slot="rate">{{item.rate}} {{item.comment}}条评价</span>
               <span slot="address">{{item.address}}</span>
-              <span slot="price">人均消费￥{{item.price}}</span>
+              <span slot="price">人均消费<span style="color: #ffac2d">￥{{item.price}}</span></span>
             </goods-item>
           </Col>
         </Row>
@@ -87,29 +87,32 @@ export default {
         'goodLists|6': [{
           'id|+1': 1,
           'img': 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566215007264&di=2795f9a4d030891b83edeb928048237f&imgtype=0&src=http%3A%2F%2Fi2.hdslb.com%2Fbfs%2Farchive%2F61c712f4a4da4e7b13e22de8a1a6a652348ee102.jpg', // 加载的动画 && 加载完没有图片的，给个默认图片
-          'title': '黄焖鸡',
+          'title': '点拓体育中心',
           'rate': 9.8,
+          'comment': 98,
           'address': '世伦路',
           'price': 1000,
         }],
         'hotGameLists|4': [{
           'id|+1': 1,
           'img': 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566215007264&di=2795f9a4d030891b83edeb928048237f&imgtype=0&src=http%3A%2F%2Fi2.hdslb.com%2Fbfs%2Farchive%2F61c712f4a4da4e7b13e22de8a1a6a652348ee102.jpg', // 加载的动画 && 加载完没有图片的，给个默认图片
-          'title': '黄焖鸡',
+          'title': '点拓体育中心',
           'rate': 9.8,
+          'comment': 78,
           'address': '世伦路',
           'price': 1000,
         }],
         'hotSaleLists|6': [{
           'id|+1': 1,
           'img': 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566215007264&di=2795f9a4d030891b83edeb928048237f&imgtype=0&src=http%3A%2F%2Fi2.hdslb.com%2Fbfs%2Farchive%2F61c712f4a4da4e7b13e22de8a1a6a652348ee102.jpg', // 加载的动画 && 加载完没有图片的，给个默认图片
-          'title': '黄焖鸡',
+          'title': '点拓体育中心',
           'rate': 9.8,
+          'comment': 58,
           'address': '世伦路',
           'price': 1000,
         }]
       });
-    }, 2000);
+    }, 1000);
   },
   methods: {
 
@@ -121,10 +124,10 @@ export default {
   height: 100%;
   .showImg {
     width: 100%;
-    height: 26em;
+    height: 350px;
     background: url('../assets/swim.jpg') no-repeat;
     background-size: cover;
-    background-position-y: -30em;
+    background-position-y: -10em;
   }
   .container {
     padding-bottom: 6em;
@@ -140,7 +143,7 @@ export default {
         padding-left: 0.5em;
       }
       div.sale {
-        height: $o_default_height * 2;
+        height: ($o_default_height + 8px) * 2;
         background: #000;
       }
     }
@@ -150,7 +153,7 @@ export default {
     &:nth-child(3) {
       // padding-top: 6em;
       .ivu-row {
-        height: 200px;
+        height: 300px;
         .ivu-col {
           height: 100%;
           &:nth-child(1) {
@@ -161,10 +164,11 @@ export default {
           }
           &:nth-child(2) {
             div {
+              margin-left: 1em;
               background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566215007264&di=2795f9a4d030891b83edeb928048237f&imgtype=0&src=http%3A%2F%2Fi2.hdslb.com%2Fbfs%2Farchive%2F61c712f4a4da4e7b13e22de8a1a6a652348ee102.jpg') no-repeat;
-              height: 46%;
+              height: 48%;
               &:nth-child(2) {
-                margin: 1em 0;
+                margin-top: 1em;
               }
             }
           }

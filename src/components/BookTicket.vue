@@ -7,7 +7,7 @@
               <div>票类别：</div>
             </Col>
             <Col :sm="18" :md="18" :lg="18">
-              <div></div>
+              <div>游泳票 &nbsp; 器械健身</div>
             </Col>
           </Row>
         </div>
@@ -28,7 +28,9 @@
                     <div class="spot spot_right"></div>
                     <div>
                       ￥{{item.price}}<br>
-                      {{item.time}}
+                      <div style="font-size: 16px;">
+                        有效期至：{{item.time}}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -101,10 +103,10 @@ export default {
       'ticketLists|6': [{
         'id|+1': 1,
         'icon': '#icon-youyong',
-        'title': Random.paragraph(1, 10),
+        'title': '游泳票',
         'rate': Random.integer(0, 10),
         'price': Random.integer(60, 100),
-        'time': Random.datetime(),
+        'time': '2019-09-14',
         'num': 0,
       }],
     });
