@@ -28,7 +28,7 @@ Vue.prototype.REGEXP = REGEXP;
 
 router.beforeEach((to, from, next) => {
   // to and from are both route objects. must call `next`.
-  console.log(to);
+  console.log(to.fullPath);
   if (to.matched.some(res => res.meta.isLogin)) {
     if (sessionStorage['username']) {
       next();

@@ -1,6 +1,18 @@
 <template>
   <div id="layout" v-cloak>
-    <div class="header"></div>
+    <div class="header">
+      <div class="header_inner">
+        <div class="left"></div>
+        <div class="right">
+          <router-link to="/login">
+            <div class="signIn">
+              <span v-if="!isSignIn">登录</span>
+              <span v-else>欢迎你:{{isSignIn}}</span>
+            </div>
+          </router-link>
+        </div>
+      </div>
+    </div>
     <div class="nav_container" :class="{ 'nav_fixed': is_nav_fixed }">
       <div class="nav">
           <router-link tag="div" to="/home">首页</router-link>
@@ -56,6 +68,11 @@ export default {
       is_nav_fixed: false,
     };
   },
+  computed: {
+    isSignIn: function() {
+      return sessionStorage['username'];
+    },
+  },
   mounted() {
     window.addEventListener('scroll', this.showBtn);
   },
@@ -97,9 +114,33 @@ $g_border_radius: 20px;
     width: 100%;
     height: 6em;
     background: #bdbdbd;
-    // z-index: 100;
-    // position: fixed;
-    // top: 0;
+    .header_inner {
+      height: inherit;
+      width: $g_width;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      .left {
+        height: inherit;
+        width: 200px;
+        background-image: url('http://img.doit10019.com/15a43798-8ec3-46bf-bf85-e0c1f9d97c57');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: 0 10px;
+      }
+      .right {
+        height: inherit;
+        width: 200px;
+        .signIn {
+          padding: 0.6em;
+          color: #fff;
+          cursor: pointer;
+          text-align: center;
+          margin-top: 1em;
+          font-size: 16px;
+        }
+      }
+    }
   }
   .nav_container {
     background: $g_background;

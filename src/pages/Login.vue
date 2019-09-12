@@ -55,11 +55,15 @@ export default {
     },
     signIn() {
       sessionStorage.setItem('username', this.phoneNum);
-      console.log(this.$router.currentRoute.fullPath); // /login?redirect=/checkout
-      // 登录成功后，跳转刚刚购买的页面
-      let url = decodeURIComponent(this.$router.currentRoute.fullPath).split('=')[1];
+      let temp_url = decodeURIComponent(this.$router.currentRoute.fullPath); // /login?redirect=/checkout
+      let url = '';
+      if (temp_url.indexOf('?') !== -1) { // 到支付页面 // 登录成功后，跳转刚刚购买的页面
+        url = temp_url.split('=')[1];
+      } else { // 直接登录
+        url = 'home';
+      }
       this.$router.push({
-        path: decodeURIComponent(url)
+        path: url
       });
     },
   },
