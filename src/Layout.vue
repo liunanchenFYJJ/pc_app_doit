@@ -4,12 +4,12 @@
       <div class="header_inner">
         <div class="left"></div>
         <div class="right">
-          <router-link to="/login">
             <div class="signIn">
-              <span v-if="!isSignIn">登录</span>
+              <router-link tag="span" to="/login" v-if="!isSignIn">
+                登录
+              </router-link>
               <span v-else>欢迎你:{{isSignIn}}</span>
             </div>
-          </router-link>
         </div>
       </div>
     </div>

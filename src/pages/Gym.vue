@@ -25,22 +25,23 @@
     <div class="container">
       <div class="inner">
         <Row>
-          <Col :sm="16" :md="16" :lg="18">
-           <Row v-for="(item, i) in MockData.goodLists" :key="i">
-             <Col span="24">
-              <goods-item @goodItemDetails="toGoodDetails(item)" mode="horizontal" :i_width="i_width" :imgSrc="item.img" :baseRate="10">
-                <span slot="title">{{item.title}}</span>
-                <span slot="rate">{{item.rate}}条评价</span>
-                <span slot="address">{{item.address}}</span>
-                <span slot="price">人均消费￥{{item.price}}</span>
-              </goods-item>
-             </Col>
-           </Row>
-          </Col>
-          <Col :sm="8" :md="8" :lg="6">
+          <Col :sm="18" :md="19" :lg="19">
             <Row v-for="(item, i) in MockData.goodLists" :key="i">
               <Col span="24">
-                <goods-item :imgSrc="item.img" :baseRate="10">
+                <goods-item @goodItemDetails="toGoodDetails(item)" mode="horizontal" :i_width="i_width" :imgSrc="item.img" :baseRate="10">
+                  <span slot="title">{{item.title}}</span>
+                  <span slot="rate">{{item.rate}}条评价</span>
+                  <span slot="address">{{item.address}}</span>
+                  <span slot="price">人均消费￥{{item.price}}</span>
+                </goods-item>
+              </Col>
+            </Row>
+          </Col>
+          <Col :sm="6" :md="5" :lg="5">
+            <h3 style="marginLeft: 1em;">猜你喜欢</h3>
+            <Row v-for="(item, i) in MockData.goodLists" :key="i">
+              <Col span="24">
+                <goods-item :imgSrc="item.img" :i_height="100" :baseRate="10">
                   <span slot="title">{{item.title}}</span>
                   <span slot="rate">{{item.rate}}条评价</span>
                   <span slot="address">{{item.address}}</span>
@@ -66,7 +67,7 @@ export default {
       hotGameLists: [],
       hotSaleLists: [],
       MockData: {},
-      i_width: 320,
+      i_width: 220,
     };
   },
   created() {
@@ -119,9 +120,10 @@ export default {
   .showImg {
     width: $g_width;
     margin: auto;
-    height: 26em;
-    background: url('../assets/swim.jpg') no-repeat;
+    height: 360px;
+    background: url('../assets/volleyball.jpg') no-repeat;
     background-size: cover;
+    background-position-y: -20px;
   }
   .container {
     padding-bottom: 6em;

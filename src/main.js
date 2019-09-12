@@ -29,6 +29,12 @@ Vue.prototype.REGEXP = REGEXP;
 router.beforeEach((to, from, next) => {
   // to and from are both route objects. must call `next`.
   console.log(to.fullPath);
+  let notOpenUrl = ['/train', '/games', 'mall', '/community'];
+  if (notOpenUrl.indexOf(to.fullPath) !== -1) {
+    next({
+      path: '/404',
+    });
+  }
   if (to.matched.some(res => res.meta.isLogin)) {
     if (sessionStorage['username']) {
       next();
