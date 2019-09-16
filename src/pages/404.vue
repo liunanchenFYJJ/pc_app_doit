@@ -1,9 +1,9 @@
 <template>
   <div>
     <h1>该模块暂未开放</h1>
-    <router-link to="$router.from">
-      《返回
-    </router-link>
+      <div @click="$router.go(-1)">
+        《返回
+      </div>
   </div>
 </template>
 <script>
