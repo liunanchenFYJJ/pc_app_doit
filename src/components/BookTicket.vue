@@ -7,10 +7,10 @@
               <div>票类别：</div>
             </Col>
             <Col :sm="18" :md="18" :lg="18">
-              <div>所有</div>
-              <div v-for="(item, i) in ticketOrCardTypeList" :style="{'background': cellActive ? 'blue' : 'red'}" :key="i" @click="cellClick">
-                {{item}}
-              </div>
+              <RadioGroup v-model="default_button" type="button">
+                <Radio label="所有"></Radio>
+                <Radio v-for="(item, i) in ticketOrCardTypeList" :key="i" :label="item"></Radio>
+              </RadioGroup>
             </Col>
           </Row>
         </div>
@@ -58,13 +58,10 @@ export default {
     return {
       MockData: {},
       ticketOrCardTypeList: [],
-      cellActive: false,
+      default_button: '所有',
     };
   },
   methods: {
-    cellClick() {
-      this.cellActive = true;
-    },
     // 获取票卡所有的类别
     getCardOrTicketTypes() {
       let data = {
@@ -164,30 +161,30 @@ export default {
     .container {
       .inner {
         padding: 0 1em;
-        &:nth-child(1) {
-          .ivu-row {
-            .ivu-col:nth-child(1) {
-              div {
-                @include div_commen;
-              }
-            }
-            .ivu-col:nth-child(2) {
-              div {
-                display: inline-block;
-                @include div_commen;
-                border-radius: 10px;
-                border: 1px solid grey;
-                &:hover {
-                  color: #fff;
-                  background: $g_default_color;
-                }
-                &:nth-child(1) {
-                  margin-left: -2em;
-                }
-              }
-            }
-          }
-        }
+        // &:nth-child(1) {
+        //   .ivu-row {
+        //     .ivu-col:nth-child(1) {
+        //       div {
+        //         @include div_commen;
+        //       }
+        //     }
+        //     .ivu-col:nth-child(2) {
+        //       div {
+        //         display: inline-block;
+        //         @include div_commen;
+        //         border-radius: 10px;
+        //         border: 1px solid grey;
+        //         &:hover {
+        //           color: #fff;
+        //           background: $g_default_color;
+        //         }
+        //         &:nth-child(1) {
+        //           margin-left: -2em;
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
         &:nth-child(3) {
           // margin-top: 1em;
           min-height: 500px;
@@ -248,5 +245,16 @@ export default {
         }
       }
     }
+  }
+  .active {
+    color: #fff;
+    background: $g_default_color;
+  }
+  .ivu-radio-default {
+    margin: 1em 0 0 1em;
+  }
+  .ivu-radio-wrapper {
+    border-radius: 4px !important;
+    border-left: none;
   }
 </style>
