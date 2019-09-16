@@ -8,7 +8,13 @@
               <router-link tag="span" to="/login" v-if="!isSignIn">
                 登录
               </router-link>
-              <span v-else>欢迎你:{{isSignIn}}</span>
+              <div v-else @mouseleave="handleMouseleave">
+                <transition-group enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+                  <div :key="0" @mouseenter="handleMouseenter">欢迎你:{{isSignIn}}</div>
+                  <div v-show="!isNone" :key="1">个人中心</div>
+                  <div v-show="!isNone" :key="2" @click="signOut">退出登录</div>
+                </transition-group>
+              </div>
             </div>
         </div>
       </div>
@@ -66,6 +72,7 @@ export default {
     return {
       isBtnShow: false,
       is_nav_fixed: false,
+      isNone: true, // 默认隐藏
     };
   },
   computed: {
@@ -98,6 +105,17 @@ export default {
         top: 0,
         behavior: 'smooth',
       });
+    },
+    handleMouseenter(event) {
+      this.isNone = false;
+    },
+    handleMouseleave() {
+      this.isNone = true;
+    },
+    signOut() {
+      sessionStorage.clear(); // 清除数据
+      console.log(this);
+      this.$router.go(0); // 刷新页面 TODO: 有没有局部刷新的方式
     },
   },
 };
@@ -138,6 +156,18 @@ $g_border_radius: 20px;
           text-align: center;
           margin-top: 1em;
           font-size: 16px;
+          position: relative;
+          z-index: 100;
+          & > div > span > div {
+            &:nth-child(n+2) {
+              background: $g_default_color;
+              border-radius: 8px;
+              &:hover {
+                background: #fff;
+                color: $g_default_color;
+              }
+            }
+          }
         }
       }
     }

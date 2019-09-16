@@ -6,7 +6,7 @@
         <h2>附近场馆</h2>
         <Row>
           <Col :sm="12" :md="12" :lg="8" v-for="(item, i) in MockData.goodLists" :key="i">
-            <goods-item :imgSrc="item.img" :baseRate="10">
+            <goods-item :imgSrc="item.img" :baseRate="10" @goodItemDetails="gotoGym(item)">
               <span slot="title" style="font-size: 16px;">{{item.title}}</span>
               <span slot="rate">{{item.rate}} {{item.comment}}条评价</span>
               <span slot="address">{{item.address}}</span>
@@ -115,7 +115,11 @@ export default {
     }, 1000);
   },
   methods: {
-
+    gotoGym(item) {
+      this.$router.push({
+        path: `gym/${item.id}`,
+      });
+    },
   },
 };
 </script>

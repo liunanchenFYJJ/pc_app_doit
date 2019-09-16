@@ -8,6 +8,7 @@ import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import './theme/index.less';
 import './theme/global_style.scss';
+import 'animate.css';
 import { hasPermission } from '@/utils/index';
 import axios from 'axios';
 import REGEXP from '@/utils/regExp';
@@ -19,7 +20,8 @@ Vue.use(iView);
 Vue.prototype.hasPermission = hasPermission;
 Vue.prototype.$axios = axios;
 // Vue.prototype.HOST = '/api';
-axios.defaults.baseURL = 'https://dtwx3.doit10019.com/diantuo/';
+// axios.defaults.baseURL = 'https://dtwx3.doit10019.com/diantuo/';
+axios.defaults.baseURL = 'http://192.168.1.254:8080/diantuo/';
 // axios.defaults.headers['Content-Type'] = 'application/json;charset=UTF-8';
 
 Vue.config.productionTip = false;
