@@ -8,6 +8,7 @@ import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import './theme/index.less';
 import './theme/global_style.scss';
+import 'animate.css';
 import { hasPermission } from '@/utils/index';
 import axios from 'axios';
 import REGEXP from '@/utils/regExp';
