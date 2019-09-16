@@ -2,7 +2,7 @@
     <div id="gymDetails">
       <div class="inner">
         <div>
-          <Tabs value="ticket">
+          <Tabs value="ticket" type="card">
             <TabPane label="购票" name="ticket">
               <book-ticket></book-ticket>
             </TabPane>

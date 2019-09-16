@@ -7,7 +7,10 @@
               <div>票类别：</div>
             </Col>
             <Col :sm="18" :md="18" :lg="18">
-              <div>游泳票 &nbsp; 器械健身</div>
+              <div>所有</div>
+              <div v-for="(item, i) in ticketOrCardTypeList" :style="{'background': cellActive ? 'blue' : 'red'}" :key="i" @click="cellClick">
+                {{item}}
+              </div>
             </Col>
           </Row>
         </div>
@@ -54,9 +57,36 @@ export default {
   data() {
     return {
       MockData: {},
+      ticketOrCardTypeList: [],
+      cellActive: false,
     };
   },
   methods: {
+    cellClick() {
+      this.cellActive = true;
+    },
+    // 获取票卡所有的类别
+    getCardOrTicketTypes() {
+      let data = {
+        operator_id: 'c4fb984777d111e986f98cec4bb1848c',
+        operator_role: 'admin',
+        orgId: 'c4f67f3177d111e986f98cec4bb1848c',
+        type: 'pw',
+      };
+      this.$axios({
+        method: 'POST',
+        url: 'getCardOrTicketTypes.do',
+        data: data,
+      }).then(res => {
+        if (res.data.code === 200) {
+          this.ticketOrCardTypeList = res.data.data;
+        } else {
+          this.$Message.warning(res.code);
+        }
+      }).catch(error => {
+        console.log(error);
+      });
+    },
     countPriz({ item, sign }) {
       if (sign === 'ADD') {
         this.setToCart(item); // 把item存入shoppingCartList
@@ -111,6 +141,7 @@ export default {
       }],
     });
     this.$store.state.shoppingCartList = [...this.MockData.ticketLists];
+    this.getCardOrTicketTypes(); // 获取票卡类别
   },
 };
 </script>
@@ -121,13 +152,42 @@ export default {
   //   background: #fff;
   //   border-radius: 50%;
   // }
+  @mixin div_commen {
+    padding: 0.5em 1em 0.5em 1em;
+    margin: 1em 1em 0 0;
+    cursor: pointer;
+  }
   #bookTicket {
     // .ivu-col {
     //   border-bottom: 1px solid #e8eaec;
     // }
     .container {
       .inner {
-        padding: 1em;
+        padding: 0 1em;
+        &:nth-child(1) {
+          .ivu-row {
+            .ivu-col:nth-child(1) {
+              div {
+                @include div_commen;
+              }
+            }
+            .ivu-col:nth-child(2) {
+              div {
+                display: inline-block;
+                @include div_commen;
+                border-radius: 10px;
+                border: 1px solid grey;
+                &:hover {
+                  color: #fff;
+                  background: $g_default_color;
+                }
+                &:nth-child(1) {
+                  margin-left: -2em;
+                }
+              }
+            }
+          }
+        }
         &:nth-child(3) {
           // margin-top: 1em;
           min-height: 500px;

@@ -1,5 +1,5 @@
 <template>
-    <div id="bookTicket">
+    <div id="bookCard">
       <div class="container">
         <div class="inner">
           <Row :gutter="16">
@@ -14,18 +14,16 @@
         <Divider />
         <div class="inner">
           <Row :gutter="16">
-            <Col v-for="(item, index) in MockData.ticketLists" :key="index" :sm="24" :md="24" :lg="24">
-              <div class="item_ticket">
-                <div class="ticket">
+            <Col v-for="(item, index) in MockData.cardLists" :key="index" :sm="24" :md="24" :lg="24">
+              <div class="item_card">
+                <div class="card">
                   <div class="piece">
-                    <div class="spot spot_left"></div>
                     <div>
                       <Icon color="#fff" size="36" type="md-headset" />
                       <div>{{item.title}}</div>
                     </div>
                   </div>
                   <div class="piece">
-                    <div class="spot spot_right"></div>
                     <div>
                       ￥{{item.price}}<br>
                       <div style="font-size: 16px;">
@@ -47,7 +45,7 @@ import ButtonGroups from './ButtonGroups';
 import Mock from 'mockjs';
 const Random = Mock.Random;
 export default {
-  name: 'BookTicket',
+  name: 'BookCard',
   components: {
     ButtonGroups,
   },
@@ -100,7 +98,7 @@ export default {
   },
   created() {
     this.MockData = Mock.mock({
-      'ticketLists|6': [{
+      'cardLists|6': [{
         'id|+1': 1,
         'icon': '#icon-youyong',
         'title': '羽毛球年卡',
@@ -110,18 +108,12 @@ export default {
         'num': 0,
       }],
     });
-    this.$store.state.shoppingCartList = [...this.MockData.ticketLists];
+    this.$store.state.shoppingCartList = [...this.MockData.cardLists];
   },
 };
 </script>
 <style lang="scss" scoped>
-  // .spot {
-  //   width: 16px;
-  //   height: 16px;
-  //   background: #fff;
-  //   border-radius: 50%;
-  // }
-  #bookTicket {
+  #bookCard {
     // .ivu-col {
     //   border-bottom: 1px solid #e8eaec;
     // }
@@ -132,7 +124,7 @@ export default {
           // margin-top: 1em;
           min-height: 500px;
           // height: calc( 100% -  24em);
-          .item_ticket {
+          .item_card {
             width: 100%;
             height: inherit;
             // background: lightblue;
@@ -142,36 +134,18 @@ export default {
             &:hover {
               background: #e8eaec;
             }
-            .ticket {
+            .card {
               width: 300px;
               height: 140px;
               background: $g_default_color;
               display: flex;
+              border-radius: 10px;
               & > div.piece{ // 票 左右两块
                 width: 50%;
-                height: inherit;
-                background: $g_default_color;
+                // height: inherit;
+                // background: $g_default_color;
                 position: relative;
-                &:nth-child(1) {
-                  border-right: 1px dashed #fff;
-                }
-                & > div.spot {
-                  // @import "spot";
-                  width: 16px;
-                  height: 16px;
-                  background: #fff;
-                  border-radius: 50%;
-                  position: absolute;
-                  top: calc( 50% - (16px/2) );
-                }
-                .spot_left {
-                  left: -8px;
-                }
-                .spot_right {
-                  right: -8px;
-                }
-                & > div:nth-child(2) { // 票内容样式
-                  // background: lightgreen;
+                & > div:nth-child(1) { // 票内容样式
                   width: 100%;
                   height: inherit;
                   padding: 1.2em;

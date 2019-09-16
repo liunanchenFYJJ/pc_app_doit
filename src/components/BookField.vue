@@ -14,8 +14,9 @@
               <Tooltip placement="top" :delay="500">
                 {{itemIn.money}}
                 <div slot="content">
-                  <p>{{item.status}}</p>
-                  <p><i>Can customize the style</i></p>
+                  <p>{{itemIn.status}}</p>
+                  <p>{{itemIn.time}}</p>
+                  <!-- <i><i>Can customize the style</i></p> -->
                 </div>
               </Tooltip>
             </div>
@@ -91,7 +92,6 @@ export default {
       this.$axios({
         method: 'POST',
         url: 'fieldSale/listFieldSale.do',
-        // url: 'http://192.168.1.254:8080/diantuo/fieldSale/listFieldSale.do',
         data: data,
       }).then(res => {
         if (res.data.code === 200) {
