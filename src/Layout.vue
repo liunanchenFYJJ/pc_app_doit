@@ -5,9 +5,9 @@
         <div class="left"></div>
         <div class="location">
           <div class="inner">
-            <div>{{location}}</div>
             <!-- 首次进来，根据session里面的数据来判断进入城市选择 -->
-            <!-- <Button type="default" ghost>切换城市</Button> -->
+            <Icon color="#fff" size="24" type="ios-pin" />
+            <span>{{location}}</span>
             <router-link tag="Button" to="/changecity">切换城市</router-link>
           </div>
         </div>
@@ -87,9 +87,6 @@ export default {
     isSignIn: function() {
       return sessionStorage['username'];
     },
-    // location: function() {
-    //   return this.$route.params.location;
-    // },
   },
   mounted() {
     window.addEventListener('scroll', this.fixHeader);
@@ -119,7 +116,6 @@ export default {
     },
     signOut() {
       sessionStorage.clear(); // 清除数据
-      console.log(this);
       this.$router.go(0); // 刷新页面 TODO: 有没有局部刷新的方式
     },
   },
@@ -168,9 +164,16 @@ $g_border_radius: 20px;
         color: #fff;
         height: inherit;
         width: ( $g_width - 2 * (200px) );
-        background: rgb(163, 17, 17);
+        display: flex;
+        justify-content: flex-end;
+        font-size: 16px;
         .inner {
-          padding: 0.6em;
+          padding: 1.4em 0;
+          height: inherit;
+          .ivu-btn-default {
+            color: #fff;
+            background: #bdbdbd;
+          }
         }
       }
       .right {

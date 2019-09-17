@@ -1,47 +1,47 @@
 <template>
-    <div id="bookCard">
-      <div class="container">
-        <div class="inner">
-          <Row :gutter="16">
-            <Col :sm="4" :md="4" :lg="4">
-              <div style="width: 100%;">卡类别：</div>
-            </Col>
-            <Col :sm="18" :md="18" :lg="18">
-              <RadioGroup v-model="default_button" type="button">
-                <Radio label="所有"></Radio>
-                <Radio v-for="(item, i) in ticketOrCardTypeList" :key="i" :label="item"></Radio>
-              </RadioGroup>
-            </Col>
-          </Row>
-        </div>
-        <Divider />
-        <div class="inner">
-          <Row :gutter="16">
-            <Col v-for="(item, index) in MockData.cardLists" :key="index" :sm="24" :md="24" :lg="24">
-              <div class="item_card">
-                <div class="card">
-                  <div class="piece">
-                    <div>
-                      <Icon color="#fff" size="36" type="md-headset" />
-                      <div>{{item.title}}</div>
-                    </div>
+  <div id="bookCard">
+    <div class="container">
+      <div class="inner">
+        <Row :gutter="16">
+          <Col :sm="4" :md="4" :lg="4">
+            <div style="width: 100%;">卡类别：</div>
+          </Col>
+          <Col :sm="18" :md="18" :lg="18">
+            <RadioGroup v-model="default_button" type="button">
+              <Radio label="所有"></Radio>
+              <Radio v-for="(item, i) in ticketOrCardTypeList" :key="i" :label="item"></Radio>
+            </RadioGroup>
+          </Col>
+        </Row>
+      </div>
+      <Divider />
+      <div class="inner">
+        <Row :gutter="16">
+          <Col v-for="(item, index) in MockData.cardLists" :key="index" :sm="24" :md="24" :lg="24">
+            <div class="item_card">
+              <div class="card">
+                <div class="piece">
+                  <div>
+                    <Icon color="#fff" size="36" type="md-headset" />
+                    <div>{{item.title}}</div>
                   </div>
-                  <div class="piece">
-                    <div>
-                      ￥{{item.price}}<br>
-                      <div style="font-size: 16px;">
-                        有效期至：{{item.time}}
-                      </div>
+                </div>
+                <div class="piece">
+                  <div>
+                    ￥{{item.price}}<br>
+                    <div style="font-size: 16px;">
+                      有效期至：{{item.time}}
                     </div>
                   </div>
                 </div>
-                <button-groups @countSum="countPriz" :item="item"></button-groups>
               </div>
-            </Col>
-          </Row>
-        </div>
+              <button-groups @countSum="countPriz" :item="item"></button-groups>
+            </div>
+          </Col>
+        </Row>
       </div>
     </div>
+  </div>
 </template>
 <script>
 import ButtonGroups from './ButtonGroups';
@@ -93,8 +93,7 @@ export default {
       console.log(item);
       console.log(this.$store.state.shoppingCartList);
     },
-    delFromCart(item) {
-    },
+    delFromCart(item) {},
   },
   created() {
     this.MockData = Mock.mock({

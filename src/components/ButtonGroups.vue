@@ -1,15 +1,15 @@
 <template>
-    <ButtonGroup shape="circle">
-        <Button :disabled="item.num <= 0" @click="minusNum(item)"><Icon type="ios-remove" size="16" color="#00a1e9" /></Button>
-        <Button type="primary" style="width: 54px;">{{item.num}}</Button>
-        <transition
-            @before-enter="beforeEnter"
-            @enter="enter"
-            @after-enter="afterEnter">
-            <div v-show="isBallShow" class="ball"></div>
-        </transition>
-        <Button @click="addNum(item)"><Icon type="ios-add" size="16" color="#00a1e9" /></Button>
-    </ButtonGroup>
+  <ButtonGroup shape="circle">
+    <Button :disabled="item.num <= 0" @click="minusNum(item)"><Icon type="ios-remove" size="16" color="#00a1e9" /></Button>
+    <Button type="primary" style="width: 54px;">{{item.num}}</Button>
+    <transition
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter">
+      <div v-show="isBallShow" class="ball"></div>
+    </transition>
+    <Button @click="addNum(item)"><Icon type="ios-add" size="16" color="#00a1e9" /></Button>
+  </ButtonGroup>
 </template>
 <script>
 export default {

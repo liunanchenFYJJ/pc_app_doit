@@ -1,49 +1,49 @@
 <template>
-    <div id="bookTicket">
-      <div class="container">
-        <div class="inner">
-          <Row :gutter="16">
-            <Col :sm="4" :md="4" :lg="4">
-              <div>票类别：</div>
-            </Col>
-            <Col :sm="18" :md="18" :lg="18">
-              <RadioGroup v-model="default_button" type="button">
-                <Radio label="所有"></Radio>
-                <Radio v-for="(item, i) in ticketOrCardTypeList" :key="i" :label="item"></Radio>
-              </RadioGroup>
-            </Col>
-          </Row>
-        </div>
-        <Divider />
-        <div class="inner">
-          <Row :gutter="16">
-            <Col v-for="(item, index) in MockData.ticketLists" :key="index" :sm="24" :md="24" :lg="24">
-              <div class="item_ticket">
-                <div class="ticket">
-                  <div class="piece">
-                    <div class="spot spot_left"></div>
-                    <div>
-                      <Icon color="#fff" size="36" type="md-headset" />
-                      <div>{{item.title}}</div>
-                    </div>
+  <div id="bookTicket">
+    <div class="container">
+      <div class="inner">
+        <Row :gutter="16">
+          <Col :sm="4" :md="4" :lg="4">
+            <div>票类别：</div>
+          </Col>
+          <Col :sm="18" :md="18" :lg="18">
+            <RadioGroup v-model="default_button" type="button">
+              <Radio label="所有"></Radio>
+              <Radio v-for="(item, i) in ticketOrCardTypeList" :key="i" :label="item"></Radio>
+            </RadioGroup>
+          </Col>
+        </Row>
+      </div>
+      <Divider />
+      <div class="inner">
+        <Row :gutter="16">
+          <Col v-for="(item, index) in MockData.ticketLists" :key="index" :sm="24" :md="24" :lg="24">
+            <div class="item_ticket">
+              <div class="ticket">
+                <div class="piece">
+                  <div class="spot spot_left"></div>
+                  <div>
+                    <Icon color="#fff" size="36" type="md-headset" />
+                    <div>{{item.title}}</div>
                   </div>
-                  <div class="piece">
-                    <div class="spot spot_right"></div>
-                    <div>
-                      ￥{{item.price}}<br>
-                      <div style="font-size: 16px;">
-                        有效期至：{{item.time}}
-                      </div>
+                </div>
+                <div class="piece">
+                  <div class="spot spot_right"></div>
+                  <div>
+                    ￥{{item.price}}<br>
+                    <div style="font-size: 16px;">
+                      有效期至：{{item.time}}
                     </div>
                   </div>
                 </div>
-                <button-groups @countSum="countPriz" :item="item"></button-groups>
               </div>
-            </Col>
-          </Row>
-        </div>
+              <button-groups @countSum="countPriz" :item="item"></button-groups>
+            </div>
+          </Col>
+        </Row>
       </div>
     </div>
+  </div>
 </template>
 <script>
 import ButtonGroups from './ButtonGroups';
@@ -95,19 +95,7 @@ export default {
       console.log(item);
       console.log(this.$store.state.shoppingCartList);
     },
-    delFromCart(item) {
-      // for (let i = 0; i < this.$store.state.shoppingCartList.length; i++) {
-      //   const element = this.$store.state.shoppingCartList[i];
-      //   let num = element.num;
-      //   if (element.id === item.id) {
-      //     if (num >= 2) {
-      //       element.num--;
-      //     } else {
-      //       this.$store.state.shoppingCartList.splice(i, 1);
-      //     }
-      //   }
-      // }
-    },
+    delFromCart(item) {},
   },
   created() {
     this.MockData = Mock.mock({
@@ -127,12 +115,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-  // .spot {
-  //   width: 16px;
-  //   height: 16px;
-  //   background: #fff;
-  //   border-radius: 50%;
-  // }
   @mixin div_commen {
     padding: 0.5em 1em 0.5em 1em;
     margin: 1em 1em 0 0;

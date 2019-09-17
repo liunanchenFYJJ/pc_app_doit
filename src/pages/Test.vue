@@ -1,11 +1,11 @@
 <template>
-    <div>
-        <Button v-if="hasPermission('sys:role:add')" type="info">Info</Button>
-        <Button type="success">Success</Button>
-        <Button type="warning">Warning</Button>
-        <Button type="error">Error</Button>
-        <Table border :columns="columns1" :data="data1"></Table>
-    </div>
+  <div>
+      <Button v-if="hasPermission('sys:role:add')" type="info">Info</Button>
+      <Button type="success">Success</Button>
+      <Button type="warning">Warning</Button>
+      <Button type="error">Error</Button>
+      <Table border :columns="columns1" :data="data1"></Table>
+  </div>
 </template>
 <script>
 export default {

@@ -1,28 +1,25 @@
 <template>
-    <div id="BookField">
-        <!-- <Table border :columns="column" :data="tableFieldData"></Table> -->
-        <div class="signs">场地类别：台球</div>
-        <template>
-          <div v-for="(item, index) in tableFieldData" :key="index" class="container">
-            <div class="title">
-              {{item.place}}
+  <div id="BookField">
+    <div class="signs">场地类别：台球</div>
+    <template>
+      <div v-for="(item, index) in tableFieldData" :key="index" class="container">
+        <div class="title">{{item.place}}</div>
+        <div v-for="(itemIn, indexIn) in item.data" :key="indexIn" class="content"
+        :style="{'background': itemIn.status === 0 ? 'lightblue' : itemIn.status === 2 ? '#ff9000': itemIn.status === 88 ? '#acce22': 'red',
+        'cursor': itemIn.status === 0 ? 'pointer' : 'not-allowed'}"
+        :class="content_style" @click="handleCellClick($event, itemIn)">
+          <Tooltip placement="top" :delay="500">
+            {{itemIn.money}}
+            <div slot="content">
+              <p>{{itemIn.status}}</p>
+              <p>{{itemIn.time}}</p>
             </div>
-            <div v-for="(itemIn, indexIn) in item.data" :key="indexIn" class="content"
-            :style="{'background': itemIn.status === 0 ? 'lightblue' : itemIn.status === 2 ? '#ff9000': itemIn.status === 88 ? '#acce22': 'red',
-            'cursor': itemIn.status === 0 ? 'pointer' : 'not-allowed'}"
-            :class="content_style" @click="handleCellClick($event, itemIn)">
-              <Tooltip placement="top" :delay="500">
-                {{itemIn.money}}
-                <div slot="content">
-                  <p>{{itemIn.status}}</p>
-                  <p>{{itemIn.time}}</p>
-                </div>
-              </Tooltip>
-            </div>
-          </div>
-          <div class="line" ref="line"></div>
-        </template>
-    </div>
+          </Tooltip>
+        </div>
+      </div>
+      <div class="line" ref="line"></div>
+    </template>
+  </div>
 </template>
 <script>
 import moment from 'moment';
@@ -141,7 +138,6 @@ export default {
     .signs {
       width: 100%;
       height: 50px;
-      // background: #187;
       padding: 0 0 1em 1em;
     }
     .container {
@@ -165,7 +161,6 @@ export default {
         font-size: 16px;
         text-align: center;
         line-height: 40px;
-        // background: lightblue;
         &:hover {
           cursor: pointer;
           background: #ff6600;
