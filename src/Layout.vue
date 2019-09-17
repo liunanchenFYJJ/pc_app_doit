@@ -5,12 +5,10 @@
         <div class="left"></div>
         <div class="location">
           <div class="inner">
-            {{location ? location : ''}}
+            <div>{{location}}</div>
             <!-- 首次进来，根据session里面的数据来判断进入城市选择 -->
             <!-- <Button type="default" ghost>切换城市</Button> -->
-            <router-link tag="Button" to="/changecity">
-              切换城市
-            </router-link>
+            <router-link tag="Button" to="/changecity">切换城市</router-link>
           </div>
         </div>
         <div class="right">
@@ -129,12 +127,12 @@ export default {
     // 只有从选择城市进来会改变
     if (from.fullPath === '/changecity') {
       next(vm => {
-        sessionStorage['currentCity'] = vm.$route.params.location;
-        vm.location = sessionStorage['currentCity'];
+        localStorage['currentCity'] = vm.$route.params.location;
+        vm.location = localStorage['currentCity'];
       });
     } else {
       next(vm => {
-        vm.location = sessionStorage['currentCity'];
+        vm.location = localStorage['currentCity'];
       });
     }
   },

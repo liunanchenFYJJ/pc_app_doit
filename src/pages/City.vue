@@ -78,6 +78,7 @@ export default {
       let arr = localStorage['recentCity'] ? JSON.parse(localStorage['recentCity']) : [];
       switch (sign) {
         case 'hot':
+          localStorage['currentCity'] = itemIn;
           if (arr.indexOf(itemIn) === -1) { // 只存localstorage里面不存在的
             arr.push(itemIn);
           }
@@ -89,6 +90,7 @@ export default {
           });
           break;
         default:
+          localStorage['currentCity'] = itemIn.name;
           if (arr.indexOf(itemIn.name) === -1) { // 只存localstorage里面不存在的
             arr.push(itemIn.name);
           }

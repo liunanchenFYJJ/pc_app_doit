@@ -35,6 +35,7 @@ router.beforeEach((to, from, next) => {
       path: '/404',
     });
   }
+  // 判断该路由是否需要登陆
   if (to.matched.some(res => res.meta.isLogin)) {
     if (sessionStorage['username']) {
       next();
@@ -49,6 +50,14 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   };
+  // 判断是否需要选择城市
+  if (localStorage['currentCity']) {
+    next();
+  } else {
+    next({
+      name: 'City'
+    });
+  }
 });
 
 /* eslint-disable no-new */
