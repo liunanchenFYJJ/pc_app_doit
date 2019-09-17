@@ -72,7 +72,7 @@ export default {
       };
       this.$axios({
         method: 'POST',
-        url: 'getCardOrTicketTypes.do',
+        url: 'localApis/getCardOrTicketTypes.do',
         data: data,
       }).then(res => {
         if (res.data.code === 200) {
@@ -94,22 +94,6 @@ export default {
     setToCart(item) {
       console.log(item);
       console.log(this.$store.state.shoppingCartList);
-      // let inList = false;
-      // if (!this.$store.state.shoppingCartList.length) {
-      //   this.$store.state.shoppingCartList.push(item);
-      // } else {
-      //   for (let i = 0; i < this.$store.state.shoppingCartList.length; i++) {
-      //     const element = this.$store.state.shoppingCartList[i];
-      //     if (element.id === item.id) {
-      //       element.num++;
-      //       inList = true;
-      //       return;
-      //     };
-      //   }
-      //   if (!inList) {
-      //     this.$store.state.shoppingCartList.push(item);
-      //   }
-      // };
     },
     delFromCart(item) {
       // for (let i = 0; i < this.$store.state.shoppingCartList.length; i++) {
@@ -155,44 +139,14 @@ export default {
     cursor: pointer;
   }
   #bookTicket {
-    // .ivu-col {
-    //   border-bottom: 1px solid #e8eaec;
-    // }
     .container {
       .inner {
         padding: 0 1em;
-        // &:nth-child(1) {
-        //   .ivu-row {
-        //     .ivu-col:nth-child(1) {
-        //       div {
-        //         @include div_commen;
-        //       }
-        //     }
-        //     .ivu-col:nth-child(2) {
-        //       div {
-        //         display: inline-block;
-        //         @include div_commen;
-        //         border-radius: 10px;
-        //         border: 1px solid grey;
-        //         &:hover {
-        //           color: #fff;
-        //           background: $g_default_color;
-        //         }
-        //         &:nth-child(1) {
-        //           margin-left: -2em;
-        //         }
-        //       }
-        //     }
-        //   }
-        // }
         &:nth-child(3) {
-          // margin-top: 1em;
           min-height: 500px;
-          // height: calc( 100% -  24em);
           .item_ticket {
             width: 100%;
             height: inherit;
-            // background: lightblue;
             padding: 2em;
             margin-bottom: 1em;
             display: flex;
@@ -213,7 +167,6 @@ export default {
                   border-right: 1px dashed #fff;
                 }
                 & > div.spot {
-                  // @import "spot";
                   width: 16px;
                   height: 16px;
                   background: #fff;
@@ -228,7 +181,6 @@ export default {
                   right: -8px;
                 }
                 & > div:nth-child(2) { // 票内容样式
-                  // background: lightgreen;
                   width: 100%;
                   height: inherit;
                   padding: 1.2em;
@@ -246,15 +198,17 @@ export default {
       }
     }
   }
-  .active {
-    color: #fff;
-    background: $g_default_color;
-  }
   .ivu-radio-default {
-    margin: 1em 0 0 1em;
+    margin: 0 0 1em 1em;
   }
   .ivu-radio-wrapper {
     border-radius: 4px !important;
-    border-left: none;
+    border: 1px solid #dcdee2 !important;
+    &::before {
+      content: none;
+    }
+    &::after {
+      content: none;
+    }
   }
 </style>

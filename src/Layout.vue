@@ -3,19 +3,29 @@
     <div class="header">
       <div class="header_inner">
         <div class="left"></div>
+        <div class="location">
+          <div class="inner">
+            {{location ? location : ''}}
+            <!-- 首次进来，根据session里面的数据来判断进入城市选择 -->
+            <!-- <Button type="default" ghost>切换城市</Button> -->
+            <router-link tag="Button" to="/changecity">
+              切换城市
+            </router-link>
+          </div>
+        </div>
         <div class="right">
-            <div class="signIn">
-              <router-link tag="span" to="/login" v-if="!isSignIn">
-                登录
-              </router-link>
-              <div v-else @mouseleave="handleMouseleave">
-                <transition-group enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-                  <div :key="0" @mouseenter="handleMouseenter">欢迎你:{{isSignIn}}</div>
-                  <div v-show="!isNone" :key="1">个人中心</div>
-                  <div v-show="!isNone" :key="2" @click="signOut">退出登录</div>
-                </transition-group>
-              </div>
+          <div class="signIn">
+            <router-link tag="span" to="/login" v-if="!isSignIn">
+              登录
+            </router-link>
+            <div v-else @mouseleave="handleMouseleave">
+              <transition-group enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+                <div :key="0" @mouseenter="handleMouseenter">欢迎你:{{isSignIn}}</div>
+                <div v-show="!isNone" :key="1">个人中心</div>
+                <div v-show="!isNone" :key="2" @click="signOut">退出登录</div>
+              </transition-group>
             </div>
+          </div>
         </div>
       </div>
     </div>
@@ -58,36 +68,39 @@
         <img src="./assets/erweima.jpg" alt="" srcset="">
       </div>
     </div>
-    <div v-show="isBtnShow" @click="handleBackTop" class="backTop">
-      <Icon size="16" color="#fff" type="ios-arrow-up" />
-    </div>
+    <back-to-top :isBtnShow="isBtnShow"></back-to-top>
   </div>
 </template>
 <script>
 import Login from '@/pages/Login';
+import BackToTop from '@/components/BackToTop';
 export default {
   name: 'Layout',
-  components: { Login },
+  components: { Login, BackToTop },
   data() {
     return {
       isBtnShow: false,
       is_nav_fixed: false,
       isNone: true, // 默认隐藏
+      location: '',
     };
   },
   computed: {
     isSignIn: function() {
       return sessionStorage['username'];
     },
+    // location: function() {
+    //   return this.$route.params.location;
+    // },
   },
   mounted() {
-    window.addEventListener('scroll', this.showBtn);
+    window.addEventListener('scroll', this.fixHeader);
   },
   destroyed() {
-    window.removeEventListener('scroll', this.showBtn);
+    window.removeEventListener('scroll', this.fixHeader);
   },
   methods: {
-    showBtn() {
+    fixHeader() {
       // 按钮
       if (window.pageYOffset >= 400) {
         this.isBtnShow = true;
@@ -100,12 +113,6 @@ export default {
         this.is_nav_fixed = false;
       }
     },
-    handleBackTop() {
-      window.scroll({
-        top: 0,
-        behavior: 'smooth',
-      });
-    },
     handleMouseenter(event) {
       this.isNone = false;
     },
@@ -117,6 +124,19 @@ export default {
       console.log(this);
       this.$router.go(0); // 刷新页面 TODO: 有没有局部刷新的方式
     },
+  },
+  beforeRouteEnter(to, from, next) { // 组件路由监听 通过vm进行访问
+    // 只有从选择城市进来会改变
+    if (from.fullPath === '/changecity') {
+      next(vm => {
+        sessionStorage['currentCity'] = vm.$route.params.location;
+        vm.location = sessionStorage['currentCity'];
+      });
+    } else {
+      next(vm => {
+        vm.location = sessionStorage['currentCity'];
+      });
+    }
   },
 };
 </script>
@@ -145,6 +165,15 @@ $g_border_radius: 20px;
         background-repeat: no-repeat;
         background-size: contain;
         background-position: 0 10px;
+      }
+      .location {
+        color: #fff;
+        height: inherit;
+        width: ( $g_width - 2 * (200px) );
+        background: rgb(163, 17, 17);
+        .inner {
+          padding: 0.6em;
+        }
       }
       .right {
         height: inherit;
@@ -261,23 +290,6 @@ $g_border_radius: 20px;
           cursor: pointer;
         }
       }
-    }
-  }
-  .backTop {
-    position: fixed;
-    right: 2em;
-    bottom: 2em;
-    width: 3em;
-    height: 3em;
-    background: #515a6e;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.8;
-    cursor: pointer;
-    &:hover {
-      opacity: 1;
     }
   }
 }

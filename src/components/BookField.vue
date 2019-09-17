@@ -16,7 +16,6 @@
                 <div slot="content">
                   <p>{{itemIn.status}}</p>
                   <p>{{itemIn.time}}</p>
-                  <!-- <i><i>Can customize the style</i></p> -->
                 </div>
               </Tooltip>
             </div>
@@ -31,19 +30,7 @@ export default {
   name: 'BookField',
   data() {
     return {
-      tableFieldData: [
-        // {
-        //   place: 1,
-        //   test: 1,
-        //   cellClassName: {
-        //     place: 'demo-table-info-cell-name'
-        //   }
-        // },
-        // {
-        //   place: 2,
-        //   test: 2
-        // }
-      ],
+      tableFieldData: [],
       column: [
         {
           title: 'place',
@@ -86,12 +73,12 @@ export default {
         operator_id: '2014011166',
         operator_role: 'admin',
         orgId: 'c4f67f3177d111e986f98cec4bb1848c',
-        today: '2019-09-10',
+        today: '2019-09-17',
         week: '星期二',
       };
       this.$axios({
         method: 'POST',
-        url: 'fieldSale/listFieldSale.do',
+        url: 'localApis/fieldSale/listFieldSale.do',
         data: data,
       }).then(res => {
         if (res.data.code === 200) {

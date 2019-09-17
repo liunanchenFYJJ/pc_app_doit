@@ -7,7 +7,10 @@
               <div style="width: 100%;">卡类别：</div>
             </Col>
             <Col :sm="18" :md="18" :lg="18">
-              <div>时间卡 &nbsp; 计次卡</div>
+              <RadioGroup v-model="default_button" type="button">
+                <Radio label="所有"></Radio>
+                <Radio v-for="(item, i) in ticketOrCardTypeList" :key="i" :label="item"></Radio>
+              </RadioGroup>
             </Col>
           </Row>
         </div>
@@ -52,9 +55,33 @@ export default {
   data() {
     return {
       MockData: {},
+      ticketOrCardTypeList: [],
+      default_button: '所有',
     };
   },
   methods: {
+    // 获取票卡所有的类别
+    getCardOrTicketTypes() {
+      let data = {
+        operator_id: 'c4fb984777d111e986f98cec4bb1848c',
+        operator_role: 'admin',
+        orgId: 'c4f67f3177d111e986f98cec4bb1848c',
+        type: 'kw',
+      };
+      this.$axios({
+        method: 'POST',
+        url: 'localApis/getCardOrTicketTypes.do',
+        data: data,
+      }).then(res => {
+        if (res.data.code === 200) {
+          this.ticketOrCardTypeList = res.data.data;
+        } else {
+          this.$Message.warning(res.code);
+        }
+      }).catch(error => {
+        console.log(error);
+      });
+    },
     countPriz({ item, sign }) {
       if (sign === 'ADD') {
         this.setToCart(item); // 把item存入shoppingCartList
@@ -65,35 +92,8 @@ export default {
     setToCart(item) {
       console.log(item);
       console.log(this.$store.state.shoppingCartList);
-      // let inList = false;
-      // if (!this.$store.state.shoppingCartList.length) {
-      //   this.$store.state.shoppingCartList.push(item);
-      // } else {
-      //   for (let i = 0; i < this.$store.state.shoppingCartList.length; i++) {
-      //     const element = this.$store.state.shoppingCartList[i];
-      //     if (element.id === item.id) {
-      //       element.num++;
-      //       inList = true;
-      //       return;
-      //     };
-      //   }
-      //   if (!inList) {
-      //     this.$store.state.shoppingCartList.push(item);
-      //   }
-      // };
     },
     delFromCart(item) {
-      // for (let i = 0; i < this.$store.state.shoppingCartList.length; i++) {
-      //   const element = this.$store.state.shoppingCartList[i];
-      //   let num = element.num;
-      //   if (element.id === item.id) {
-      //     if (num >= 2) {
-      //       element.num--;
-      //     } else {
-      //       this.$store.state.shoppingCartList.splice(i, 1);
-      //     }
-      //   }
-      // }
     },
   },
   created() {
@@ -109,25 +109,20 @@ export default {
       }],
     });
     this.$store.state.shoppingCartList = [...this.MockData.cardLists];
+    this.getCardOrTicketTypes(); // 获取票卡类别
   },
 };
 </script>
 <style lang="scss" scoped>
   #bookCard {
-    // .ivu-col {
-    //   border-bottom: 1px solid #e8eaec;
-    // }
     .container {
       .inner {
         padding: 1em;
         &:nth-child(3) {
-          // margin-top: 1em;
           min-height: 500px;
-          // height: calc( 100% -  24em);
           .item_card {
             width: 100%;
             height: inherit;
-            // background: lightblue;
             padding: 2em;
             margin-bottom: 1em;
             display: flex;
@@ -142,8 +137,6 @@ export default {
               border-radius: 10px;
               & > div.piece{ // 票 左右两块
                 width: 50%;
-                // height: inherit;
-                // background: $g_default_color;
                 position: relative;
                 & > div:nth-child(1) { // 票内容样式
                   width: 100%;
@@ -161,6 +154,19 @@ export default {
           }
         }
       }
+    }
+  }
+  .ivu-radio-default {
+    margin: 0 0 1em 1em;
+  }
+  .ivu-radio-wrapper {
+    border-radius: 4px !important;
+    border: 1px solid #dcdee2 !important;
+    &::before {
+      content: none;
+    }
+    &::after {
+      content: none;
     }
   }
 </style>

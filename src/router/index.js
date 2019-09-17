@@ -7,6 +7,7 @@ import GymDetails from '@/pages/GymDetails';
 import Checkout from '@/pages/Checkout';
 import Login from '@/pages/Login';
 import NotFound from '@/pages/404';
+import City from '@/pages/City';
 import Test from '@/pages/Test';
 
 Vue.use(Router);
@@ -17,6 +18,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login,
+    },
+    {
+      path: '/changecity',
+      name: 'City',
+      component: City,
     },
     {
       path: '/404',

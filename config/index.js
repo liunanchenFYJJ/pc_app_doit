@@ -10,7 +10,22 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/3rdApis': {
+        target: 'https://www.ele.me/restapi/shopping/v1/cities',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/3rdApis': '',
+        },
+      },
+      '/localApis': {
+        target: 'http://192.168.1.254:8080/diantuo/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/localApis': '',
+        },
+      },
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
