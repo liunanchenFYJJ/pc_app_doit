@@ -23,7 +23,7 @@
             <Col span="2">
               <div class="label" :id="item" :ref="item">{{item}}</div>
             </Col>
-            <Col span="20">
+            <Col span="22">
               <span class="content" v-for="(itemIn, indexIn) in listData[item]" :key="indexIn" @click="chooseCity(itemIn, 'default')">{{itemIn.name}}</span>
             </Col>
           </Row>
@@ -35,6 +35,7 @@
 </template>
 <script>
 import BackToTop from '@/components/BackToTop';
+import cityJson from '@/utils/city.json';
 export default {
   name: 'City',
   components: { BackToTop },
@@ -53,7 +54,7 @@ export default {
     },
   },
   created() {
-    this.getCityList();
+    this.getCityList(); // TODO:
   },
   mounted() {
     window.addEventListener('scroll', this.fixHeader);
@@ -65,13 +66,16 @@ export default {
     getCityList() {
       this.$axios({
         method: 'GET',
-        url: '3rdApis',
+        url: '3rdApis', // TODO: 解决第三方api问题
+        // url: 'https://www.ele.me/restapi/shopping/v1/cities',
         data: {},
       }).then(res => {
         this.listData = res.data;
         this.letterList = [...Object.keys(res.data)];
       }).catch(error => {
-        console.log(error);
+        console.log(error); // 如果接口报错，就直接从本地取值
+        this.listData = cityJson;
+        this.letterList = [...Object.keys(cityJson)];
       });
     },
     chooseCity(itemIn, sign) {
@@ -119,7 +123,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   #city {
     height: auto;
     background: $g_background;

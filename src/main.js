@@ -18,6 +18,9 @@ Vue.use(store);
 Vue.use(iView);
 
 Vue.prototype.hasPermission = hasPermission;
+const baseURL = process.env.API;
+console.log(baseURL);
+axios.defaults.baseURL = baseURL;
 Vue.prototype.$axios = axios;
 // Vue.prototype.HOST = '/api';
 // axios.defaults.headers['Content-Type'] = 'application/json;charset=UTF-8';

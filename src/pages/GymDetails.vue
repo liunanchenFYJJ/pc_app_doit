@@ -34,7 +34,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   #gymDetails {
     padding-bottom: 6em;
     background: $g_background;

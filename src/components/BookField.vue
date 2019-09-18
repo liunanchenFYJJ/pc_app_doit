@@ -75,7 +75,7 @@ export default {
       };
       this.$axios({
         method: 'POST',
-        url: 'localApis/fieldSale/listFieldSale.do',
+        url: 'fieldSale/listFieldSale.do',
         data: data,
       }).then(res => {
         if (res.data.code === 200) {
@@ -130,7 +130,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   $border: 1px solid #fff;
   #BookField {
     width: 1000px;

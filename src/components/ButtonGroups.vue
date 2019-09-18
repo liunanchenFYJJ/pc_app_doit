@@ -54,15 +54,15 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-    .ball {
-        width: 1.4em;
-        height: 1.4em;
-        background: $g_default_color;
-        border-radius: 50%;
-        position: absolute;
-        top: 8px;
-        right: 15px;
-        z-index: 100;
-    }
+<style lang="scss" scoped>
+  .ball {
+    width: 1.4em;
+    height: 1.4em;
+    background: $g_default_color;
+    border-radius: 50%;
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    z-index: 100;
+  }
 </style>

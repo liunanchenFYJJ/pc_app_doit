@@ -55,7 +55,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 $box_shadow: inset 2px 2px 8px #eee;
 #cart {
   background: lightblue;

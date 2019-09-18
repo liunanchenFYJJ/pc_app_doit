@@ -89,7 +89,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   .card {
     background: #fff;
     // height: 280px;

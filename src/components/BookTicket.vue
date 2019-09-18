@@ -72,7 +72,7 @@ export default {
       };
       this.$axios({
         method: 'POST',
-        url: 'localApis/getCardOrTicketTypes.do',
+        url: 'getCardOrTicketTypes.do',
         data: data,
       }).then(res => {
         if (res.data.code === 200) {
