@@ -5,6 +5,11 @@
       <Button type="warning">Warning</Button>
       <Button type="error">Error</Button>
       <Table border :columns="columns1" :data="data1"></Table>
+      <router-link to="foo">Foo</router-link>
+      <router-link to="bar">Bar</router-link>
+      <router-view></router-view>
+      <div>动态路由匹配--{{ $route.params }}</div>
+      <span style="color: red;" v-text="msg"></span>
   </div>
 </template>
 <script>
@@ -50,12 +55,25 @@ export default {
           address: 'Ottawa No. 2 Lake Park',
           date: '2016-10-04'
         },
-      ]
+      ],
+      msg: Date(),
     };
   },
   created() {
     console.log(this);
+    console.log(Date());
+    console.log(this.$route.params);
+    this.msg = Date() + 'c';
     this.atest();
+  },
+  // watch: {
+  //   '$route'(to, from) {
+  //     this.msg = Date();
+  //   }
+  // },
+  beforeRouteUpdate(to, from, next) {
+    this.msg = Date() + 'd';
+    next();
   },
   methods: {
     atest() {
@@ -64,3 +82,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+  .router-link-active {
+    color: red;
+  }
+</style>

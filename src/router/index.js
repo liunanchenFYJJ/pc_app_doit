@@ -9,6 +9,8 @@ import Login from '@/pages/Login';
 import NotFound from '@/pages/404';
 import City from '@/pages/City';
 import Test from '@/pages/Test';
+import Foo from '@/pages/Foo';
+import Bar from '@/pages/Bar';
 
 Vue.use(Router);
 
@@ -64,7 +66,22 @@ export default new Router({
           path: '/test',
           name: 'Test',
           component: Test,
+          children: [
+            {
+              path: 'foo',
+              component: Foo,
+            },
+            {
+              path: 'bar',
+              component: Bar,
+            },
+          ],
         },
+        // {
+        //   path: '/test/:name/:age',
+        //   name: 'Test1',
+        //   component: Test,
+        // },
       ],
     },
   ],
